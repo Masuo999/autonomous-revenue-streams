@@ -131,10 +131,10 @@ function App() {
       )}
 
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', color: 'inherit' }} aria-label="PromptCraft.AI Home">
           <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'var(--primary-gradient)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>P</div>
           <h1 style={{ fontSize: '1.5rem', margin: 0 }}>PromptCraft<span style={{ color: 'var(--primary-accent)' }}>.AI</span></h1>
-        </div>
+        </a>
         <nav style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--surface-color)', padding: '0.5rem 1rem', borderRadius: '20px', border: '1px solid var(--border-color)' }}>
             <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Free Credits:</span>
@@ -152,8 +152,9 @@ function App() {
           </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <label style={{ fontSize: '0.9rem', fontWeight: 500, color: 'var(--text-secondary)' }}>Target Role or Task (Required)</label>
+            <label htmlFor="prompt-role" style={{ fontSize: '0.9rem', fontWeight: 500, color: 'var(--text-secondary)' }}>Target Role or Task (Required)</label>
             <input 
+              id="prompt-role"
               type="text" 
               className="input-field" 
               placeholder="e.g. SEO Copywriter, Next.js Expert..." 
@@ -163,8 +164,9 @@ function App() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <label style={{ fontSize: '0.9rem', fontWeight: 500, color: 'var(--text-secondary)' }}>Additional Context (Optional)</label>
+            <label htmlFor="prompt-context" style={{ fontSize: '0.9rem', fontWeight: 500, color: 'var(--text-secondary)' }}>Additional Context (Optional)</label>
             <textarea 
+              id="prompt-context"
               className="input-field" 
               style={{ minHeight: '120px', resize: 'vertical' }}
               placeholder="Describe constraints, tone, or specific requirements..."

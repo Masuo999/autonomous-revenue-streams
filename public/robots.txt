@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://puronnpt.vercel.app/sitemap.xml

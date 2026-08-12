@@ -89,7 +89,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
               description: 'Unlimited high-quality AI prompt generation.',
               tax_code: 'txcd_10000000',
             },
-            unit_amount: 500, // $5.00
+            unit_amount: 300, // $3.00
             recurring: {
               interval: 'month',
             },

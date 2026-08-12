@@ -120,7 +120,7 @@ function App() {
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <button className="btn btn-primary" style={{ padding: '1rem', fontSize: '1.1rem' }} onClick={handleCheckout}>
-                Upgrade Now - $5/month
+                Upgrade Now - $3/month
               </button>
               <button className="btn btn-secondary" onClick={() => setShowPaywall(false)}>
                 Maybe Later

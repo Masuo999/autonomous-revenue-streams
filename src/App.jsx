@@ -212,6 +212,44 @@ function App() {
           )}
         </section>
       </main>
+
+      {/* SEO & Content Section */}
+      <section style={{ marginTop: '4rem', padding: '2rem 0', borderTop: '1px solid var(--border-color)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+          
+          <div>
+            <h3 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>How it Works</h3>
+            <ol style={{ paddingLeft: '1.2rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
+              <li><strong>Input Your Goal:</strong> Type in your desired target role, task, or objective.</li>
+              <li><strong>Add Context:</strong> Provide any specific constraints, tones, or background information.</li>
+              <li><strong>Generate Prompt:</strong> Our advanced AI engine crafts a highly optimized, professional prompt structure instantly.</li>
+              <li><strong>Copy & Use:</strong> Paste the generated prompt into ChatGPT, Claude 3, or Gemini for superior AI outputs.</li>
+            </ol>
+          </div>
+
+          <div>
+            <h3 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>Use Cases & Applications</h3>
+            <ul style={{ paddingLeft: '1.2rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
+              <li><strong>ChatGPT Prompt Generator:</strong> Get the absolute best results from ChatGPT by using professionally engineered prompt templates.</li>
+              <li><strong>Claude 3 Prompts:</strong> Optimize your inputs for Anthropic's Claude to handle complex reasoning and coding tasks.</li>
+              <li><strong>Marketing & SEO Copywriting:</strong> Generate prompts that force AI to write high-converting, SEO-optimized blog posts and ad copy.</li>
+              <li><strong>Software Development:</strong> Craft precise instructions for AI coding assistants to generate clean, bug-free code.</li>
+              <li><strong>Prompt Engineering Made Easy:</strong> Skip the learning curve of prompt engineering. Let our tool do the heavy lifting.</li>
+            </ul>
+          </div>
+          
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid var(--border-color)', textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+        <p>&copy; {new Date().getFullYear()} PromptCraft.AI - The Ultimate AI Prompt Generator. All rights reserved.</p>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '1rem' }}>
+          <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Privacy Policy</a>
+          <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Terms of Service</a>
+          <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Contact Us</a>
+        </div>
+      </footer>
     </div>
   )
 }

@@ -110,6 +110,52 @@ app.post('/api/create-checkout-session', async (req, res) => {
   }
 });
 
+// ----------------------------------------------------
+// New Micro-SaaS API Endpoints
+// ----------------------------------------------------
+
+// API 1: Text Summarization
+app.post('/api/summarize', async (req, res) => {
+  try {
+    const { text } = req.body;
+    if (!text) {
+      return res.status(400).json({ error: 'Text is required' });
+    }
+    
+    // Simulate AI summarization if using dummy key
+    if (openai.apiKey === 'dummy_key') {
+      const summary = text.substring(0, 50) + '... (Summarized by Mock AI)';
+      return res.json({ original_length: text.length, summary });
+    }
+
+    const completion = await openai.chat.completions.create({
+      messages: [
+        { role: 'system', content: 'You are a helpful assistant that summarizes text concisely.' },
+        { role: 'user', content: `Summarize this: ${text}` }
+      ],
+      model: 'gpt-4o-mini',
+      temperature: 0.5,
+      max_tokens: 200,
+    });
+    
+    res.json({ 
+      original_length: text.length, 
+      summary: completion.choices[0].message.content 
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to summarize text' });
+  }
+});
+
+// API 2: Image Analysis Mock
+app.post('/api/analyze-image', (req, res) => {
+  // In a real app, we would process req.body.image using a vision model
+  res.json({
+    tags: ['nature', 'landscape', 'mountain'],
+    confidence: 0.95
+  });
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Backend API Server running on http://localhost:${PORT}`);

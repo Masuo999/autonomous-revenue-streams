@@ -24,6 +24,23 @@ const ui = {
     ruleThree: 'Keep control.', ruleThreeBody: 'Your card, your phone and your route home stay with you.',
     promiseTitle: 'No fake insider talk.',
     promiseBody: 'No invented venues. No paid rankings disguised as advice. We start with public authorities and established tourism sources, then translate the details into something you can actually use tonight.',
+    productKicker: '03 / FIELD PACK',
+    productTitle: 'Carry the plan. Not the panic.',
+    productBody: 'An eight-page English field guide built for the first night in Tokyo, Nagoya and Hamamatsu. Save it offline before you go out.',
+    productFeatureOne: 'Three city-specific night plans',
+    productFeatureTwo: '60-second venue and price check',
+    productFeatureThree: 'Return route, emergency numbers and official links',
+    productEdition: 'PDF · ENGLISH · 2026 EDITION',
+    productPrice: '$24', productOneTime: 'one-time purchase',
+    buyGuide: 'Get the three-city pack',
+    checkoutConnecting: 'Secure checkout is being connected',
+    checkoutStarting: 'Opening secure checkout…',
+    checkoutUnavailable: 'Checkout is not live yet. No payment will be taken.',
+    checkoutError: 'Checkout could not be opened. Please try again.',
+    checkoutSuccess: 'Payment confirmed. Your field pack is ready.',
+    checkoutCancelled: 'Checkout cancelled. Nothing was charged.',
+    downloadGuide: 'Download the PDF',
+    securePayment: 'Secure one-time payment by Stripe. Download access is verified against the paid session.',
     back: 'Back to the night desk',
     footer: 'Japan after dark, without the tourist-trap nonsense.',
     photoCredit: 'Photography from Pexels',
@@ -48,6 +65,23 @@ const ui = {
     ruleThree: '主導権を保つ。', ruleThreeBody: 'カード、携帯電話、帰宅手段は自分で管理する。',
     promiseTitle: '偽物の「裏情報」は扱いません。',
     promiseBody: '架空の店、広告を隠したランキングは掲載しません。公的機関と信頼できる観光情報を起点に、今夜使える判断材料へ翻訳します。',
+    productKicker: '03 / 実用パック',
+    productTitle: '焦る前に、手順を持ち歩く。',
+    productBody: '東京・名古屋・浜松の初夜に必要な判断を8ページにまとめた英語版PDF。外出前にオフライン保存できます。',
+    productFeatureOne: '3都市それぞれの夜の行動プラン',
+    productFeatureTwo: '60秒でできる店・料金チェック',
+    productFeatureThree: '帰路、緊急番号、公的情報リンク',
+    productEdition: 'PDF・英語・2026年版',
+    productPrice: '$24', productOneTime: '買い切り',
+    buyGuide: '3都市パックを購入',
+    checkoutConnecting: '安全な決済を接続中です',
+    checkoutStarting: '決済ページを開いています…',
+    checkoutUnavailable: '決済はまだ公開されていません。料金は発生しません。',
+    checkoutError: '決済ページを開けませんでした。もう一度お試しください。',
+    checkoutSuccess: 'お支払いを確認しました。ガイドを取得できます。',
+    checkoutCancelled: '決済をキャンセルしました。請求はありません。',
+    downloadGuide: 'PDFをダウンロード',
+    securePayment: 'Stripeによる買い切り決済。支払い済みセッションを確認してダウンロードを許可します。',
     back: 'ナイトデスクへ戻る',
     footer: '観光客向けの罠に振り回されず、日本の夜を楽しむ。',
     photoCredit: '写真：Pexels',
@@ -72,6 +106,23 @@ const ui = {
     ruleThree: 'Behalte die Kontrolle.', ruleThreeBody: 'Karte, Telefon und Heimweg bleiben in deiner Hand.',
     promiseTitle: 'Kein erfundenes Insider-Gerede.',
     promiseBody: 'Keine erfundenen Lokale und keine bezahlten Rankings als Beratung. Wir beginnen bei Behörden und etablierten Tourismusquellen und machen daraus Informationen, die heute Abend helfen.',
+    productKicker: '03 / FIELD PACK',
+    productTitle: 'Nimm den Plan mit. Nicht die Panik.',
+    productBody: 'Ein achtseitiger englischer Praxis-Guide für die erste Nacht in Tokio, Nagoya und Hamamatsu. Vor dem Ausgehen offline speichern.',
+    productFeatureOne: 'Drei stadtspezifische Nachtpläne',
+    productFeatureTwo: '60-Sekunden-Check für Lokal und Preis',
+    productFeatureThree: 'Heimweg, Notrufnummern und offizielle Links',
+    productEdition: 'PDF · ENGLISCH · AUSGABE 2026',
+    productPrice: '$24', productOneTime: 'einmaliger Kauf',
+    buyGuide: 'Drei-Städte-Paket kaufen',
+    checkoutConnecting: 'Sicherer Checkout wird verbunden',
+    checkoutStarting: 'Sicherer Checkout wird geöffnet…',
+    checkoutUnavailable: 'Der Checkout ist noch nicht live. Es wird nichts berechnet.',
+    checkoutError: 'Der Checkout konnte nicht geöffnet werden. Bitte erneut versuchen.',
+    checkoutSuccess: 'Zahlung bestätigt. Dein Field Pack ist bereit.',
+    checkoutCancelled: 'Checkout abgebrochen. Es wurde nichts berechnet.',
+    downloadGuide: 'PDF herunterladen',
+    securePayment: 'Sichere Einmalzahlung über Stripe. Der Download wird anhand der bezahlten Sitzung freigegeben.',
     back: 'Zurück zum Night Desk',
     footer: 'Japan nach Einbruch der Dunkelheit—ohne Touristenfallen.',
     photoCredit: 'Fotografie von Pexels',
@@ -105,6 +156,9 @@ function App() {
   const [activeCity, setActiveCity] = useState('all');
   const [selectedContent, setSelectedContent] = useState(null);
   const [markdown, setMarkdown] = useState('');
+  const [paymentsReady, setPaymentsReady] = useState(null);
+  const [checkoutStatus, setCheckoutStatus] = useState('idle');
+  const [paidSessionId, setPaidSessionId] = useState('');
 
   const allItems = useMemo(() => {
     if (!index) return [];
@@ -119,6 +173,23 @@ function App() {
       })
       .then(setIndex)
       .catch((error) => console.error('Error fetching index:', error));
+  }, []);
+
+  useEffect(() => {
+    fetch('/api/health')
+      .then((response) => response.json())
+      .then((health) => setPaymentsReady(health.payments === 'ready'))
+      .catch(() => setPaymentsReady(false));
+
+    const params = new URLSearchParams(window.location.search);
+    const checkout = params.get('checkout');
+    const sessionId = params.get('session_id') || '';
+    if (checkout === 'success' && sessionId.startsWith('cs_')) {
+      setPaidSessionId(sessionId);
+      setCheckoutStatus('success');
+    } else if (checkout === 'cancelled') {
+      setCheckoutStatus('cancelled');
+    }
   }, []);
 
   useEffect(() => {
@@ -180,6 +251,23 @@ function App() {
       window.setTimeout(() => document.querySelector('#night-desk')?.scrollIntoView(), 50);
     } else {
       document.querySelector('#night-desk')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const startCheckout = async () => {
+    setCheckoutStatus('starting');
+    try {
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ product: 'night-compass-three-city-pack' }),
+      });
+      const payload = await response.json();
+      if (!response.ok || !payload.url) throw new Error(payload.error || 'Checkout failed');
+      window.location.assign(payload.url);
+    } catch (error) {
+      console.error('Checkout failed:', error.message);
+      setCheckoutStatus('error');
     }
   };
 
@@ -277,9 +365,58 @@ function App() {
             </ol>
           </section>
 
+          <section className="product-section" id="guide">
+            <div className="product-visual" aria-hidden="true">
+              <div className="product-photo-grid">
+                {cityDesks.map(({ key, image }) => <img key={key} src={image} alt="" />)}
+              </div>
+              <div className="guide-cover">
+                <small>INDEPENDENT NIGHT DESK</small>
+                <strong>NIGHT<br />COMPASS<br />JAPAN</strong>
+                <span>THREE-CITY<br />FIRST NIGHT PACK</span>
+                <em>TOKYO / NAGOYA / HAMAMATSU</em>
+              </div>
+            </div>
+            <div className="product-copy">
+              <p className="product-kicker">{ui[lang].productKicker}</p>
+              <h2>{ui[lang].productTitle}</h2>
+              <p className="product-intro">{ui[lang].productBody}</p>
+              <ul>
+                <li>{ui[lang].productFeatureOne}</li>
+                <li>{ui[lang].productFeatureTwo}</li>
+                <li>{ui[lang].productFeatureThree}</li>
+              </ul>
+              <div className="product-edition">{ui[lang].productEdition}</div>
+              <div className="product-action">
+                <div><strong>{ui[lang].productPrice}</strong><span>{ui[lang].productOneTime}</span></div>
+                {checkoutStatus === 'success' ? (
+                  <a className="buy-button" href={`/api/download-guide?session_id=${encodeURIComponent(paidSessionId)}`}>
+                    {ui[lang].downloadGuide}<span>↓</span>
+                  </a>
+                ) : (
+                  <button type="button" className="buy-button" onClick={startCheckout} disabled={paymentsReady !== true || checkoutStatus === 'starting'}>
+                    {checkoutStatus === 'starting'
+                      ? ui[lang].checkoutStarting
+                      : paymentsReady === false
+                        ? ui[lang].checkoutConnecting
+                        : ui[lang].buyGuide}
+                    <span>→</span>
+                  </button>
+                )}
+              </div>
+              <div className={`checkout-notice checkout-notice--${checkoutStatus}`} aria-live="polite">
+                {checkoutStatus === 'success' && ui[lang].checkoutSuccess}
+                {checkoutStatus === 'cancelled' && ui[lang].checkoutCancelled}
+                {checkoutStatus === 'error' && ui[lang].checkoutError}
+                {checkoutStatus === 'idle' && paymentsReady === false && ui[lang].checkoutUnavailable}
+              </div>
+              <small className="payment-note">{ui[lang].securePayment}</small>
+            </div>
+          </section>
+
           <section className="promise-section">
             <div className="promise-image"><img src="/images/japanese-bar-editorial.jpg" alt="A warm Japanese bar seen from the street" /></div>
-            <div className="promise-copy"><p>03 / OUR WORD</p><h2>{ui[lang].promiseTitle}</h2><span>{ui[lang].promiseBody}</span></div>
+            <div className="promise-copy"><p>04 / OUR WORD</p><h2>{ui[lang].promiseTitle}</h2><span>{ui[lang].promiseBody}</span></div>
           </section>
         </main>
       ) : (

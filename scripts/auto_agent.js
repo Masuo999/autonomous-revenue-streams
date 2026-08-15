@@ -19,6 +19,8 @@ const INTERVAL_MS = 24 * 60 * 60 * 1000;
 const TOPICS = [
   {
     section: 'blog',
+    city: 'tokyo',
+    image: '/images/tokyo-night-editorial.jpg',
     slug: 'tokyo-nightlife-safety-update',
     focus: 'Actionable safety guidance for international visitors in Tokyo nightlife districts.',
     sources: [
@@ -27,12 +29,27 @@ const TOPICS = [
     ],
   },
   {
-    section: 'newsletters',
-    slug: 'japan-night-culture-etiquette',
-    focus: 'Practical Japanese dining and nightlife etiquette for first-time visitors.',
+    section: 'blog',
+    city: 'nagoya',
+    image: '/images/nagoya-night-editorial.jpg',
+    slug: 'nagoya-night-culture-update',
+    focus: 'Practical, food-first evening guidance for international visitors around Nagoya Station, Sakae and Fushimi.',
     sources: [
-      'https://www.japan.travel/en/guide/dinner-at-a-japanese-tavern/',
-      'https://www.japan.travel/en/responsible-travel-guide/japanese-customs-and-etiquette/',
+      'https://www.nagoya-info.jp/en/gourmet/?s_genre%5B%5D=45',
+      'https://www.pref.aichi.jp/police/english/',
+    ],
+  },
+  {
+    section: 'blog',
+    city: 'hamamatsu',
+    image: '/images/hamamatsu-night-editorial.jpg',
+    slug: 'hamamatsu-night-culture-update',
+    focus: 'Practical evening guidance for Hamamatsu built around music culture, local etiquette, transport planning and visitor safety.',
+    sources: [
+      'https://visit.hamamatsu-japan.com/',
+      'https://www.hamamatsu-japan.com/en/etiquette/',
+      'https://www.entetsu.co.jp/tetsudou/english/',
+      'https://www.pref.shizuoka.jp/police/language/index.html',
     ],
   },
 ];
@@ -95,6 +112,7 @@ FRONTMATTER:
 status: published
 verified: true
 slug: ${topic.slug}-${verifiedAt}
+city: ${topic.city}
 title_en: "..."
 title_ja: "..."
 title_de: "..."
@@ -109,6 +127,7 @@ reading_time_ja: "読了5分"
 reading_time_de: "5 Min."
 verified_at: ${verifiedAt}
 source_count: ${sources.length}
+image: ${topic.image}
 ---
 
 Write the English article first, then ---LANG:JA---, then ---LANG:DE---.
@@ -125,6 +144,8 @@ function validateArticle(article, topic, verifiedAt) {
     'status: published',
     'verified: true',
     `verified_at: ${verifiedAt}`,
+    `city: ${topic.city}`,
+    `image: ${topic.image}`,
     '---LANG:JA---',
     '---LANG:DE---',
     ...topic.sources,
@@ -159,7 +180,10 @@ async function deployPublishedArticle() {
 async function runIteration() {
   const verifiedAt = new Date().toISOString().slice(0, 10);
   const dayNumber = Math.floor(Date.now() / INTERVAL_MS);
-  const topic = TOPICS[dayNumber % TOPICS.length];
+  const cityByWeekday = new Map([[1, 'tokyo'], [3, 'nagoya'], [5, 'hamamatsu']]);
+  const scheduledCity = cityByWeekday.get(new Date().getUTCDay());
+  const topic = TOPICS.find((candidate) => candidate.city === scheduledCity)
+    || TOPICS[dayNumber % TOPICS.length];
   const outputPath = path.join(publicDir, topic.section, `${topic.slug}-${verifiedAt}.md`);
 
   if (fs.existsSync(outputPath)) {
@@ -185,7 +209,10 @@ async function runIteration() {
   }
 }
 
-runIteration();
-setInterval(runIteration, INTERVAL_MS);
-
-console.log(`Night Compass agent active. Source-locked cycle: every ${INTERVAL_MS / 3600000} hours.`);
+if (process.argv.includes('--once')) {
+  await runIteration();
+} else {
+  runIteration();
+  setInterval(runIteration, INTERVAL_MS);
+  console.log(`Night Compass agent active. Source-locked cycle: every ${INTERVAL_MS / 3600000} hours.`);
+}

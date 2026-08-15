@@ -1,128 +1,191 @@
 import fs from 'fs';
 import path from 'path';
+import { execFile } from 'child_process';
+import { promisify } from 'util';
 import { fileURLToPath } from 'url';
-import { exec } from 'child_process';
 
+const runFile = promisify(execFile);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const publicDir = path.join(__dirname, '..', 'public');
+const projectDir = path.join(__dirname, '..');
+const publicDir = path.join(projectDir, 'public');
 
-// --- Configuration ---
-const OLLAMA_URL = 'http://localhost:11434/api/generate';
-const MODEL_NAME = 'huihui_ai/gemma-4-abliterated:e4b';
-const INTERVAL_MS = 60 * 60 * 1000; // 1 hour
+const OLLAMA_URL = process.env.OLLAMA_URL || 'http://localhost:11434/api/generate';
+const MODEL_NAME = process.env.OLLAMA_MODEL || 'huihui_ai/gemma-4-abliterated:e4b';
+const INTERVAL_MS = 24 * 60 * 60 * 1000;
 
-// --- Helper: Call Ollama ---
+// Only first-party government and official tourism sources are admitted here.
+// A topic needs at least two sources before it can enter the publishing flow.
+const TOPICS = [
+  {
+    section: 'blog',
+    slug: 'tokyo-nightlife-safety-update',
+    focus: 'Actionable safety guidance for international visitors in Tokyo nightlife districts.',
+    sources: [
+      'https://www.keishicho.metro.tokyo.lg.jp/multilingual/english/safe_society/victim_of_crime/sakariba_topics.html',
+      'https://www.japan.travel/en/plan/emergencies/',
+    ],
+  },
+  {
+    section: 'newsletters',
+    slug: 'japan-night-culture-etiquette',
+    focus: 'Practical Japanese dining and nightlife etiquette for first-time visitors.',
+    sources: [
+      'https://www.japan.travel/en/guide/dinner-at-a-japanese-tavern/',
+      'https://www.japan.travel/en/responsible-travel-guide/japanese-customs-and-etiquette/',
+    ],
+  },
+];
+
+function stripHtml(html) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+async function fetchOfficialSource(url) {
+  const response = await fetch(url, {
+    headers: { 'User-Agent': 'NightCompassJapan/1.0 source-verification' },
+  });
+  if (!response.ok) throw new Error(`Source fetch failed (${response.status}): ${url}`);
+  const text = stripHtml(await response.text());
+  if (text.length < 500) throw new Error(`Source text is too short: ${url}`);
+  return { url, text: text.slice(0, 14000) };
+}
+
 async function generateWithOllama(prompt) {
-  console.log(`Sending prompt to Ollama (${MODEL_NAME})...`);
+  const response = await fetch(OLLAMA_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ model: MODEL_NAME, prompt, stream: false }),
+  });
+  if (!response.ok) throw new Error(`Ollama request failed (${response.status})`);
+  const data = await response.json();
+  if (!data.response) throw new Error('Ollama returned no article');
+  return data.response.trim();
+}
+
+function buildPrompt(topic, sources, verifiedAt) {
+  const sourceBundle = sources
+    .map((source, index) => `SOURCE ${index + 1}\nURL: ${source.url}\nTEXT: ${source.text}`)
+    .join('\n\n');
+
+  return `You are the source-locked editorial engine for Night Compass Japan.
+Write one useful briefing in English, Japanese and German.
+
+NON-NEGOTIABLE RULES:
+- Use only facts stated in the supplied source text.
+- Never invent or recommend a venue, app, price, statistic, quotation or incident.
+- Do not infer that a venue is safe.
+- Cite every supplied URL under an "Official sources" heading in every language section.
+- Do not cite or mention any other URL.
+- Paraphrase; do not copy long passages.
+- If the sources do not support a useful article, output exactly REJECT.
+- Return Markdown only, using the exact frontmatter fields below.
+
+FRONTMATTER:
+---
+status: published
+verified: true
+slug: ${topic.slug}-${verifiedAt}
+title_en: "..."
+title_ja: "..."
+title_de: "..."
+excerpt_en: "..."
+excerpt_ja: "..."
+excerpt_de: "..."
+eyebrow_en: "Official-source briefing"
+eyebrow_ja: "公的出典ブリーフィング"
+eyebrow_de: "Briefing aus offiziellen Quellen"
+reading_time_en: "5 min read"
+reading_time_ja: "読了5分"
+reading_time_de: "5 Min."
+verified_at: ${verifiedAt}
+source_count: ${sources.length}
+---
+
+Write the English article first, then ---LANG:JA---, then ---LANG:DE---.
+Each language section needs a title, 3-5 practical headings and Official sources.
+
+FOCUS: ${topic.focus}
+
+${sourceBundle}`;
+}
+
+function validateArticle(article, topic, verifiedAt) {
+  if (article === 'REJECT') return false;
+  const required = [
+    'status: published',
+    'verified: true',
+    `verified_at: ${verifiedAt}`,
+    '---LANG:JA---',
+    '---LANG:DE---',
+    ...topic.sources,
+  ];
+  if (required.some((value) => !article.includes(value))) return false;
+
+  const urls = [...article.matchAll(/https?:\/\/[^)\s]+/g)].map((match) => match[0]);
+  if (urls.some((url) => !topic.sources.includes(url))) return false;
+
+  const forbidden = /fictional|placeholder|example\.com|internal premium|according to unspecified|架空|仮の店舗/i;
+  if (forbidden.test(article)) return false;
+
+  return article.length >= 3500;
+}
+
+async function deployPublishedArticle() {
+  await runFile('node', ['scripts/generate_index.js'], { cwd: projectDir });
+  await runFile('git', ['add', 'public'], { cwd: projectDir });
+
   try {
-    const response = await fetch(OLLAMA_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: MODEL_NAME,
-        prompt: prompt,
-        stream: false
-      })
-    });
-    
-    if (!response.ok) {
-      throw new Error(`Ollama HTTP Error: ${response.status}`);
-    }
-    const data = await response.json();
-    return data.response;
+    await runFile('git', ['diff', '--cached', '--quiet'], { cwd: projectDir });
+    console.log('No verified content changes to deploy.');
+    return;
   } catch (error) {
-    console.error("Ollama connection failed. Is Ollama running on localhost:11434?");
-    console.error(error);
-    return null;
+    if (error.code !== 1) throw error;
   }
+
+  await runFile('git', ['commit', '-m', 'Publish source-verified Japan briefing'], { cwd: projectDir });
+  await runFile('git', ['push', 'vercel', 'HEAD:main'], { cwd: projectDir });
 }
-
-// --- Helper: Fetch Hacker News ---
-async function fetchLatestTechNews() {
-  try {
-    const topRes = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
-    const topIds = await topRes.json();
-    // Get a random top 10 story
-    const randomId = topIds[Math.floor(Math.random() * 10)];
-    const storyRes = await fetch(`https://hacker-news.firebaseio.com/v0/item/${randomId}.json`);
-    const story = await storyRes.json();
-    return story;
-  } catch (e) {
-    console.error("HN Fetch Error:", e);
-    return { title: "AI developments accelerate in 2026", url: "https://news.ycombinator.com" };
-  }
-}
-
-// --- Content Generators ---
-const systemInstructions = `
-You are a highly capable AI writer for a GIGAZINE-style site.
-Format your output EXACTLY like this:
----
-title_en: "English Title"
-title_ja: "日本語タイトル"
-title_de: "Deutscher Titel"
----
-![thumbnail](https://image.pollinations.ai/prompt/{detailed_english_prompt_describing_the_article_visual}?width=800&height=400&nologo=true)
-# English Title
-[Long English Content. Deep analysis with headers.]
-Sources: [Source Name](https://example.com)
-
----LANG:JA---
-# 日本語タイトル
-[詳細な日本語コンテンツ。見出しを含む長文。]
-ソース: [出典名](https://example.com)
-
----LANG:DE---
-# Deutscher Titel
-[Long German Content.]
-Quellen: [Source Name](https://example.com)
-`;
 
 async function runIteration() {
-  const timestamp = Date.now();
-  console.log(`\n[${new Date().toISOString()}] Starting autonomous content generation cycle...`);
+  const verifiedAt = new Date().toISOString().slice(0, 10);
+  const dayNumber = Math.floor(Date.now() / INTERVAL_MS);
+  const topic = TOPICS[dayNumber % TOPICS.length];
+  const outputPath = path.join(publicDir, topic.section, `${topic.slug}-${verifiedAt}.md`);
 
-  // 1. Blog (Tech News)
-  console.log("Generating Blog (Tech News)...");
-  const news = await fetchLatestTechNews();
-  const blogPrompt = `${systemInstructions}\n\nTask: Write a detailed news article about this real news: Title: "${news.title}", URL: ${news.url}. Make it engaging for tech enthusiasts.`;
-  const blogContent = await generateWithOllama(blogPrompt);
-  if (blogContent) fs.writeFileSync(path.join(publicDir, 'blog', `news_${timestamp}.md`), blogContent);
+  if (fs.existsSync(outputPath)) {
+    console.log(`Today's briefing already exists: ${outputPath}`);
+    return;
+  }
 
-  // 2. Newsletter (Inbound Dating/Nightlife)
-  console.log("Generating Newsletter (Tokyo Nightlife)...");
-  const nlPrompt = `${systemInstructions}\n\nTask: Write a detailed, insider guide/newsletter for foreign tourists about dating culture in Japan, matching apps, or safe nightlife spots in Tokyo (Shinjuku/Shibuya). It can be mature/deep culture, but safe for work. Include fictional but realistic specific trendy spots or apps for 2026.`;
-  const nlContent = await generateWithOllama(nlPrompt);
-  if (nlContent) fs.writeFileSync(path.join(publicDir, 'newsletters', `dating_${timestamp}.md`), nlContent);
+  try {
+    console.log(`Fetching ${topic.sources.length} official sources…`);
+    const sources = await Promise.all(topic.sources.map(fetchOfficialSource));
+    const article = await generateWithOllama(buildPrompt(topic, sources, verifiedAt));
 
-  // 3. Product (Digital Guide)
-  console.log("Generating Product (Digital Guide)...");
-  const prodPrompt = `${systemInstructions}\n\nTask: Write a sales page for a digital PDF guide ($14.99) related to surviving Tokyo nightlife, mastering Japanese dating apps, or understanding Akihabara culture. Emphasize value.`;
-  const prodContent = await generateWithOllama(prodPrompt);
-  if (prodContent) fs.writeFileSync(path.join(publicDir, 'products', `guide_${timestamp}.md`), prodContent);
-
-  // 4. POD Product (Apparel)
-  console.log("Generating POD Product (Apparel)...");
-  const podPrompt = `${systemInstructions}\n\nTask: Write a sales page for a premium Streetwear T-shirt ($34.99). The design should combine Cyberpunk, Japanese Anime/Akihabara culture, and Techwear aesthetics. Describe the visual design heavily.`;
-  const podContent = await generateWithOllama(podPrompt);
-  if (podContent) fs.writeFileSync(path.join(publicDir, 'pod_products', `shirt_${timestamp}.md`), podContent);
-
-  // 5. Deploy
-  console.log("All content generated. Running deployment scripts...");
-  exec('node scripts/generate_index.js && git add . && git commit -m "Auto update via Ollama Agent" && git push vercel HEAD:main', { cwd: path.join(__dirname, '..') }, (err, stdout, stderr) => {
-    if (err) {
-      console.error("Deployment failed:", err);
-      console.error(stderr);
-      return;
+    if (!validateArticle(article, topic, verifiedAt)) {
+      throw new Error('Generated briefing failed source-lock validation');
     }
-    console.log("Deployment successful!");
-    console.log(stdout);
-  });
+
+    fs.writeFileSync(outputPath, article, 'utf8');
+    console.log(`Verified briefing written: ${outputPath}`);
+    await deployPublishedArticle();
+    console.log('Verified briefing deployed.');
+  } catch (error) {
+    console.error(`Publishing cycle stopped safely: ${error.message}`);
+  }
 }
 
-// Immediately run once, then set interval
 runIteration();
 setInterval(runIteration, INTERVAL_MS);
 
-console.log(`Auto Agent started. Running every ${INTERVAL_MS/1000/60} minutes using ${MODEL_NAME}.`);
+console.log(`Night Compass agent active. Source-locked cycle: every ${INTERVAL_MS / 3600000} hours.`);

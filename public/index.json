@@ -1,119 +1,93 @@
 {
-  "blog": [
+  "safety": [
     {
-      "path": "/blog/news_1786779789532.md",
+      "path": "/blog/shinjuku-night-safety-2026.md",
+      "slug": "shinjuku-night-safety-2026",
+      "section": "blog",
       "title": {
-        "en": "The Hyperloop Effect: How Next-Gen Tech is Redefining Urban Mobility",
-        "ja": "ハイパーループ効果：次世代技術が都市モビリティを再定義する方法",
-        "de": "Der Hyperloop-Effekt: Wie Next-Generation-Technologie urbane Mobilität neu definiert"
+        "en": "Shinjuku After Dark: The Four Checks to Make Before You Enter",
+        "ja": "夜の新宿：入店前に確認したい4つの安全チェック",
+        "de": "Shinjuku bei Nacht: Vier Checks vor dem Betreten einer Bar"
       },
-      "image": "/images/blog_news_1786779789532.jpg"
-    },
-    {
-      "path": "/blog/ai_gaming_trends_2026.md",
-      "title": {
-        "en": "AI in Gaming 2026: The End of the Debate and the Rise of Dynamic NPCs",
-        "ja": "2026年のAIとゲーム：議論の終焉と「ダイナミックNPC」の台頭",
-        "de": "KI im Gaming 2026: Das Ende der Debatte und der Aufstieg dynamischer NPCs"
+      "excerpt": {
+        "en": "A practical, police-sourced checklist for avoiding touts, unclear drink plans and dating-app rip-off bars in Kabukicho.",
+        "ja": "客引き、分かりにくい飲み放題、マッチングアプリを使ったぼったくりを避けるための、警視庁情報に基づくチェックリスト。",
+        "de": "Eine praktische, polizeilich belegte Checkliste gegen Schlepper, unklare Getränkepakete und Dating-App-Abzocke in Kabukicho."
       },
-      "image": "/images/blog_ai_gaming_trends_2026.jpg"
-    },
-    {
-      "path": "/blog/ai_gaming_code_revolution_2026.md",
-      "title": {
-        "en": "The AI Code Revolution in Gaming 2026: From Copilot to Autonomous Agent Teams",
-        "ja": "2026年、ゲーム開発におけるAIコード革命：Copilotから自律型エージェントチームへ",
-        "de": "Die KI-Code-Revolution im Gaming 2026: Von Copilot zu autonomen Agententeams"
+      "eyebrow": {
+        "en": "Tokyo safety desk",
+        "ja": "東京・安全デスク",
+        "de": "Tokyo Sicherheitsdesk"
       },
-      "image": "/images/blog_ai_gaming_code_revolution_2026.jpg"
+      "readingTime": {
+        "en": "5 min read",
+        "ja": "読了5分",
+        "de": "5 Min."
+      },
+      "verifiedAt": "2026-08-15",
+      "sourceCount": 3,
+      "image": null
     }
   ],
-  "newsletters": [
+  "culture": [
     {
-      "path": "/newsletters/tokyo_dating_scams_and_trends_2026.md",
+      "path": "/newsletters/izakaya-etiquette-without-anxiety.md",
+      "slug": "izakaya-etiquette-without-anxiety",
+      "section": "newsletters",
       "title": {
-        "en": "Dating in Tokyo 2026: Escaping the App Fatigue and Surviving the Nightlife Scams",
-        "ja": "東京・出会いのリアル 2026：アプリ疲れの反動と、夜の街にはびこる最新ボッタクリの手口",
-        "de": "Dating in Tokio 2026: Flucht vor der App-Müdigkeit und Überleben der Nachtleben-Betrügereien"
+        "en": "Izakaya Without Anxiety: What the Bill and Table Customs Mean",
+        "ja": "初めての居酒屋：お通し・会計・テーブルマナーの基本",
+        "de": "Entspannt ins Izakaya: Rechnung und Tischkultur verstehen"
       },
-      "image": "/images/newsletters_tokyo_dating_scams_and_trends_2026.jpg"
-    },
-    {
-      "path": "/newsletters/tokyo_dating_apps_2026.md",
-      "title": {
-        "en": "Dating in Tokyo 2026: Beyond Tinder and Surviving Kabukicho",
-        "ja": "東京のナイトライフと恋愛事情 2026：マッチングアプリの今と安全な出会い方",
-        "de": "Dating in Tokio 2026: Jenseits von Tinder und das Überleben in Kabukicho"
+      "excerpt": {
+        "en": "Understand shared plates, the otoshi table charge, drink-pouring customs and tipping before your first Japanese pub visit.",
+        "ja": "初めて日本の居酒屋を訪れる人に向けて、取り分け、お通し、飲み物のマナー、チップについて公的観光情報から解説します。",
+        "de": "Geteilte Gerichte, Otoshi-Gebühr, Einschenken und Trinkgeld — verständlich vor dem ersten Izakaya-Besuch erklärt."
       },
-      "image": "/images/newsletters_tokyo_dating_apps_2026.jpg"
-    },
-    {
-      "path": "/newsletters/dating_1786779789532.md",
-      "title": {
-        "en": "The Deep Dive: An Insider’s Guide to Dating Culture, Apps, and Romance in Tokyo",
-        "ja": "深掘りガイド：東京の恋愛文化、アプリ、そしてロマンスのためのインサイダー情報",
-        "de": "Der Deep Dive: Ein Insider-Guide zu Dating-Kultur, Apps und Romantik in Tokio"
+      "eyebrow": {
+        "en": "Culture decoder",
+        "ja": "文化・マナー解説",
+        "de": "Kultur erklärt"
       },
-      "image": "/images/newsletters_dating_1786779789532.jpg"
+      "readingTime": {
+        "en": "4 min read",
+        "ja": "読了4分",
+        "de": "4 Min."
+      },
+      "verifiedAt": "2026-08-15",
+      "sourceCount": 3,
+      "image": null
     }
   ],
-  "products": [
+  "guides": [
     {
-      "path": "/products/tokyo_survival_guide_premium.md",
+      "path": "/products/tokyo-first-night-safety-card.md",
+      "slug": "tokyo-first-night-safety-card",
+      "section": "products",
       "title": {
-        "en": "Tokyo Nightlife Survival & Connection Guide: Premium Edition",
-        "ja": "東京ナイトライフ・サバイバル＆コネクションガイド（プレミアム版）",
-        "de": "Tokio Nightlife Survival & Connection Guide: Premium Edition"
+        "en": "Tokyo First-Night Safety Card: Save These Numbers Before You Go Out",
+        "ja": "東京・初日の夜の安全カード：外出前に保存する連絡先",
+        "de": "Tokyo-Sicherheitskarte für die erste Nacht: Diese Nummern speichern"
       },
-      "image": "/images/products_tokyo_survival_guide_premium.jpg"
-    },
-    {
-      "path": "/products/tokyo_nightlife_guide.md",
-      "title": {
-        "en": "The Tokyo Nightlife Insider Guide: How to Connect Safely",
-        "ja": "東京ナイトライフ・インサイダーガイド：安全に繋がるためのディープスポット攻略",
-        "de": "Der Tokio Nightlife Insider Guide: Sicher und tief vernetzen"
+      "excerpt": {
+        "en": "A free, practical reference for police, ambulance, visitor support and the decisions to make before entering an unfamiliar venue.",
+        "ja": "警察、救急、訪日客支援の連絡先と、知らない店へ入る前の判断事項をまとめた無料の実用カード。",
+        "de": "Kostenlose Kurzübersicht mit Polizei, Rettungsdienst, Besucherhilfe und wichtigen Entscheidungen vor einem unbekannten Lokal."
       },
-      "image": "/images/products_tokyo_nightlife_guide.jpg"
-    },
-    {
-      "path": "/products/guide_1786779789532.md",
-      "title": {
-        "en": "The Ultimate Survival Guide to Tokyo Nightlife and Modern Japanese Romance",
-        "ja": "東京夜のサバイバルガイド：日本の恋愛と文化を攻略する決定版",
-        "de": "Der ultimative Überlebensführer für das Tokyo-Nachtleben und japanische Romantik"
+      "eyebrow": {
+        "en": "Free field guide",
+        "ja": "無料実用ガイド",
+        "de": "Kostenloser Guide"
       },
-      "image": "/images/products_guide_1786779789532.jpg"
+      "readingTime": {
+        "en": "3 min read",
+        "ja": "読了3分",
+        "de": "3 Min."
+      },
+      "verifiedAt": "2026-08-15",
+      "sourceCount": 4,
+      "image": null
     }
   ],
-  "pod_products": [
-    {
-      "path": "/pod_products/shirt_1786779789532.md",
-      "title": {
-        "en": "The Neon Samurai Tee: Merging Cyberpunk Grit with Akihabara Street Style",
-        "ja": "ネオン侍Tee：サイバーパンクの荒々しさと秋葉原のストリートスタイルを融合する",
-        "de": "Das Neon-Samurai-Shirt: Fusion aus Cyberpunk-Ästhetik und Akihabara-Streetwear"
-      },
-      "image": "/images/pod_products_shirt_1786779789532.jpg"
-    },
-    {
-      "path": "/pod_products/cyber_shinjuku_tshirt.md",
-      "title": {
-        "en": "Kabukicho Midnight",
-        "ja": "歌舞伎町ミッドナイト「終電」フーディー",
-        "de": "Kabukicho Midnight"
-      },
-      "image": "/images/pod_products_cyber_shinjuku_tshirt.jpg"
-    },
-    {
-      "path": "/pod_products/cyber_akiba_ghost_tee.md",
-      "title": {
-        "en": "Cyber-Akiba",
-        "ja": "サイバー秋葉原「Ghost in the Code」プレミアムTシャツ",
-        "de": "Cyber-Akiba"
-      },
-      "image": "/images/pod_products_cyber_akiba_ghost_tee.jpg"
-    }
-  ],
-  "updatedAt": "2026-08-15T07:49:26.995Z"
+  "updatedAt": "2026-08-15T09:08:27.915Z"
 }

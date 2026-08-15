@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://puronnpt.vercel.app/sitemap.xml
+Sitemap: https://autonomous-revenue-streams.vercel.app/sitemap.xml

@@ -1,110 +1,93 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import https from 'https';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 const publicDir = path.join(__dirname, '..', 'public');
-const imagesDir = path.join(publicDir, 'images');
-
-if (!fs.existsSync(imagesDir)) {
-  fs.mkdirSync(imagesDir, { recursive: true });
-}
-
-function downloadImage(url, filepath) {
-  return new Promise((resolve, reject) => {
-    if (fs.existsSync(filepath)) {
-      resolve();
-      return;
-    }
-    console.log(`Downloading ${url} to ${filepath}`);
-    https.get(url, (res) => {
-      if (res.statusCode === 200 || res.statusCode === 301 || res.statusCode === 302) {
-        if (res.statusCode === 301 || res.statusCode === 302) {
-           return downloadImage(res.headers.location, filepath).then(resolve).catch(reject);
-        }
-        res.pipe(fs.createWriteStream(filepath))
-           .on('error', reject)
-           .once('close', () => resolve());
-      } else {
-        res.resume();
-        reject(new Error(`Request Failed With a Status Code: ${res.statusCode}`));
-      }
-    }).on('error', reject);
-  });
-}
 
 function extractFrontmatter(content, key) {
-  const regex = new RegExp(`^${key}:\\s*["']?([^"'\n]+)["']?`, 'm');
+  const regex = new RegExp(`^${key}:\\s*["']?([^"'\\n]+)["']?`, 'm');
   const match = content.match(regex);
   return match ? match[1].trim() : null;
 }
 
-async function getFiles(dir) {
+function localize(content, key, fallback = '') {
+  return {
+    en: extractFrontmatter(content, `${key}_en`) || fallback,
+    ja: extractFrontmatter(content, `${key}_ja`) || fallback,
+    de: extractFrontmatter(content, `${key}_de`) || fallback,
+  };
+}
+
+function getFiles(dir) {
   const targetDir = path.join(publicDir, dir);
   if (!fs.existsSync(targetDir)) return [];
-  
-  const files = fs.readdirSync(targetDir).filter(file => file.endsWith('.md'));
+
+  const files = fs.readdirSync(targetDir).filter((file) => file.endsWith('.md'));
   const results = [];
 
   for (const file of files) {
     const filePath = path.join(targetDir, file);
     const content = fs.readFileSync(filePath, 'utf-8');
-    
-    // Extract localized titles
-    let titleEn = extractFrontmatter(content, 'title_en') || file.replace('.md', '');
-    let titleJa = extractFrontmatter(content, 'title_ja') || titleEn;
-    let titleDe = extractFrontmatter(content, 'title_de') || titleEn;
 
-    // Extract image
-    let imageUrl = '';
-    const imageMatch = content.match(/!\[.*?\]\((https:\/\/image\.pollinations\.ai\/.*?)\)/);
-    if (imageMatch) {
-      imageUrl = imageMatch[1];
-    } else {
-      const keywords = `${dir}_${titleEn.replace(/[^a-zA-Z0-9]/g, '_')}_news`;
-      imageUrl = `https://image.pollinations.ai/prompt/${keywords}?width=800&height=400&nologo=true`;
-    }
+    // Legacy and AI-only material stays on disk but is not published until it
+    // has passed the source-verification workflow.
+    if (extractFrontmatter(content, 'status') !== 'published') continue;
+    if (extractFrontmatter(content, 'verified') !== 'true') continue;
 
-    // Download image
-    const imageName = `${dir}_${file.replace('.md', '.jpg')}`;
-    const imageLocalPath = path.join(imagesDir, imageName);
-    try {
-      await downloadImage(imageUrl, imageLocalPath);
-    } catch (e) {
-      console.error(`Failed to download image for ${file}:`, e.message);
-    }
+    const fallbackTitle = file.replace('.md', '').replaceAll('_', ' ');
+    const slug = extractFrontmatter(content, 'slug') || file.replace('.md', '');
 
     results.push({
       path: `/${dir}/${file}`,
-      title: {
-        en: titleEn,
-        ja: titleJa,
-        de: titleDe
-      },
-      image: `/images/${imageName}`
+      slug,
+      section: dir,
+      title: localize(content, 'title', fallbackTitle),
+      excerpt: localize(content, 'excerpt'),
+      eyebrow: localize(content, 'eyebrow'),
+      readingTime: localize(content, 'reading_time'),
+      verifiedAt: extractFrontmatter(content, 'verified_at'),
+      sourceCount: Number(extractFrontmatter(content, 'source_count') || 0),
+      image: extractFrontmatter(content, 'image') || null,
     });
   }
-  
-  // Sort results so newest appears first (descending by filename which has timestamp or order)
-  results.sort((a, b) => b.path.localeCompare(a.path));
-  return results;
+
+  return results.sort((a, b) => {
+    const aDate = a.verifiedAt || '';
+    const bDate = b.verifiedAt || '';
+    return bDate.localeCompare(aDate) || b.path.localeCompare(a.path);
+  });
 }
 
-async function main() {
+function writeSitemap(items) {
+  const origin = 'https://autonomous-revenue-streams.vercel.app';
+  const urls = [
+    `  <url>\n    <loc>${origin}/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>`,
+    ...items.map((item) => (
+      `  <url>\n    <loc>${origin}/article/${item.slug}</loc>\n    <lastmod>${item.verifiedAt}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`
+    )),
+  ];
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
+  fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), xml);
+}
+
+function main() {
   const index = {
-    blog: await getFiles('blog'),
-    newsletters: await getFiles('newsletters'),
-    products: await getFiles('products'),
-    pod_products: await getFiles('pod_products'),
-    updatedAt: new Date().toISOString()
+    safety: getFiles('blog'),
+    culture: getFiles('newsletters'),
+    guides: getFiles('products'),
+    updatedAt: new Date().toISOString(),
   };
 
-  const indexPath = path.join(publicDir, 'index.json');
-  fs.writeFileSync(indexPath, JSON.stringify(index, null, 2));
-  console.log('Generated public/index.json with i18n support.');
+  const allItems = [...index.safety, ...index.culture, ...index.guides];
+  fs.writeFileSync(
+    path.join(publicDir, 'index.json'),
+    JSON.stringify(index, null, 2),
+  );
+  writeSitemap(allItems);
+  console.log(`Published ${allItems.length} source-verified items.`);
 }
 
-main().catch(console.error);
+main();

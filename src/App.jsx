@@ -2,9 +2,52 @@ import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import './App.css';
 
+const ui = {
+  en: {
+    blog: 'Tech News',
+    newsletters: 'Digests',
+    products: 'Digital Guides',
+    pod_products: 'Apparel',
+    readMore: 'Read More \u2192',
+    back: '\u2190 Back to Hub',
+    heroTitle: 'The Frontline of Tech,',
+    heroSpan: 'Curated by AI.',
+    heroSub: 'Autonomous agents searching, summarizing, and delivering real news every hour.',
+    status: 'Autonomous agents active',
+    loading: 'Initializing AI Systems...'
+  },
+  ja: {
+    blog: 'テックニュース',
+    newsletters: 'ダイジェスト',
+    products: 'デジタルガイド',
+    pod_products: 'アパレル',
+    readMore: '続きを読む \u2192',
+    back: '\u2190 トップへ戻る',
+    heroTitle: '世界の最前線を、',
+    heroSpan: 'AIがお届け。',
+    heroSub: '自律型AIが毎時間インターネットを巡回し、本物の最新ニュースを要約して配信します。',
+    status: 'AI自律稼働中',
+    loading: 'AIシステムを初期化中...'
+  },
+  de: {
+    blog: 'Tech-News',
+    newsletters: 'Zusammenfassungen',
+    products: 'Digitale Guides',
+    pod_products: 'Bekleidung',
+    readMore: 'Weiterlesen \u2192',
+    back: '\u2190 Zurück',
+    heroTitle: 'Die Frontlinie der Technik,',
+    heroSpan: 'Kuratiert von KI.',
+    heroSub: 'Autonome KI durchsucht das Netz und fasst jede Stunde echte Nachrichten zusammen.',
+    status: 'Autonome KI aktiv',
+    loading: 'KI-Systeme werden initialisiert...'
+  }
+};
+
 function App() {
+  const [lang, setLang] = useState('en');
   const [index, setIndex] = useState(null);
-  const [selectedContent, setSelectedContent] = useState(null); // This is now an object {path, title, image}
+  const [selectedContent, setSelectedContent] = useState(null);
   const [markdown, setMarkdown] = useState('');
   const [activeTab, setActiveTab] = useState('blog');
 
@@ -21,30 +64,55 @@ function App() {
       fetch(selectedContent.path)
         .then(res => res.text())
         .then(text => {
-          // Remove frontmatter (handles both LF and CRLF)
+          // Remove YAML frontmatter
           let cleanText = text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '');
-          
-          // Remove the pollinations image tag at the very top
+          // Remove thumbnail tag
           cleanText = cleanText.replace(/!\[.*?\]\(https:\/\/image\.pollinations\.ai\/.*?\)/, '');
           
-          setMarkdown(cleanText);
+          // Split by language markers
+          const segments = cleanText.split(/---LANG:(EN|JA|DE)---/i);
+          let targetText = cleanText; // fallback to whole text
+
+          if (segments.length > 1) {
+            // Document has LANG markers
+            // Format is typically: [english text, "JA", japanese text, "DE", german text]
+            // We need to parse it properly
+            let currentLang = 'en';
+            let extracted = segments[0]; // first chunk is usually EN if no marker
+
+            for (let i = 1; i < segments.length; i+=2) {
+              const marker = segments[i].toLowerCase();
+              const content = segments[i+1];
+              if (marker === lang) {
+                extracted = content;
+                break;
+              }
+              if (lang === 'en' && extracted.trim() === '') {
+                 // if EN was first but empty, look for EN marker
+                 if (marker === 'en') extracted = content;
+              }
+            }
+            targetText = extracted;
+          }
+          
+          setMarkdown(targetText.trim());
         })
         .catch(err => console.error('Error fetching content:', err));
     }
-  }, [selectedContent]);
+  }, [selectedContent, lang]);
 
   if (!index) {
     return (
       <div className="loading-screen">
         <div className="spinner"></div>
-        <p>Initializing AI Systems...</p>
+        <p>{ui[lang].loading}</p>
       </div>
     );
   }
 
   const renderGrid = (items) => (
     <div className="content-grid">
-      {items.length === 0 ? <p className="empty-state">Content is being generated...</p> : null}
+      {items.length === 0 ? <p className="empty-state">No stories generated yet. The AI is searching the web...</p> : null}
       {items.map((item, i) => (
         <div 
           key={i} 
@@ -54,8 +122,8 @@ function App() {
           <div className="card-image-placeholder" style={{ backgroundImage: `url(${item.image})` }}>
           </div>
           <div className="card-body">
-            <h3>{item.title}</h3>
-            <p className="read-more">Read More &rarr;</p>
+            <h3>{item.title[lang] || item.title.en}</h3>
+            <p className="read-more">{ui[lang].readMore}</p>
           </div>
         </div>
       ))}
@@ -65,22 +133,29 @@ function App() {
   return (
     <div className="app-container">
       <nav className="navbar">
-        <div className="logo">Lumina <span>by AI</span></div>
-        <p className="status-indicator"><span className="pulse"></span> Autonomous generation active</p>
+        <div className="logo">GIGA<span>AI</span></div>
+        <div className="nav-controls">
+          <p className="status-indicator"><span className="pulse"></span> {ui[lang].status}</p>
+          <select className="lang-switcher" value={lang} onChange={(e) => setLang(e.target.value)}>
+            <option value="en">English</option>
+            <option value="ja">日本語</option>
+            <option value="de">Deutsch</option>
+          </select>
+        </div>
       </nav>
       
       {!selectedContent ? (
         <main className="main-layout">
           <header className="hero">
-            <h1>The Future of Content, <span>Generated Today.</span></h1>
-            <p>Explore a fully autonomous ecosystem of articles, newsletters, and digital products curated by advanced AI.</p>
+            <h1>{ui[lang].heroTitle} <span>{ui[lang].heroSpan}</span></h1>
+            <p>{ui[lang].heroSub}</p>
           </header>
 
           <div className="tabs">
-            <button className={activeTab === 'blog' ? 'active' : ''} onClick={() => setActiveTab('blog')}>Articles</button>
-            <button className={activeTab === 'newsletters' ? 'active' : ''} onClick={() => setActiveTab('newsletters')}>Newsletters</button>
-            <button className={activeTab === 'products' ? 'active' : ''} onClick={() => setActiveTab('products')}>Digital Guides</button>
-            <button className={activeTab === 'pod_products' ? 'active' : ''} onClick={() => setActiveTab('pod_products')}>Apparel</button>
+            <button className={activeTab === 'blog' ? 'active' : ''} onClick={() => setActiveTab('blog')}>{ui[lang].blog}</button>
+            <button className={activeTab === 'newsletters' ? 'active' : ''} onClick={() => setActiveTab('newsletters')}>{ui[lang].newsletters}</button>
+            <button className={activeTab === 'products' ? 'active' : ''} onClick={() => setActiveTab('products')}>{ui[lang].products}</button>
+            <button className={activeTab === 'pod_products' ? 'active' : ''} onClick={() => setActiveTab('pod_products')}>{ui[lang].pod_products}</button>
           </div>
 
           <section className="tab-content">
@@ -93,7 +168,7 @@ function App() {
       ) : (
         <div className="reader-view">
           <button className="back-btn" onClick={() => setSelectedContent(null)}>
-            &larr; Back to Hub
+            {ui[lang].back}
           </button>
           
           <div className="reader-hero-image" style={{ backgroundImage: `url(${selectedContent.image})` }}>
@@ -102,37 +177,6 @@ function App() {
           <article className="markdown-body">
             <ReactMarkdown>{markdown}</ReactMarkdown>
           </article>
-
-          <div className="monetization-module">
-            {selectedContent.path.includes('/blog/') && (
-              <div className="cta-box affiliate">
-                <h4>Recommended for you</h4>
-                <p>Discover the tools we used to build this article.</p>
-                <a href="#" className="btn-outline">View on Amazon</a>
-              </div>
-            )}
-            {selectedContent.path.includes('/newsletters/') && (
-              <div className="cta-box premium">
-                <h4>Unlock Full Access</h4>
-                <p>Join our premium tier to read the rest of this digest and support autonomous journalism.</p>
-                <button className="btn-primary">Subscribe for $1.99/mo</button>
-              </div>
-            )}
-            {selectedContent.path.includes('/products/') && (
-              <div className="cta-box product">
-                <h4>Master This Skill</h4>
-                <p>Get the complete PDF guide and exclusive prompts.</p>
-                <button className="btn-primary">Buy Now — $14.99</button>
-              </div>
-            )}
-            {selectedContent.path.includes('/pod_products/') && (
-              <div className="cta-box apparel">
-                <h4>Wear The Future</h4>
-                <p>Premium organic cotton. Printed on demand.</p>
-                <button className="btn-primary">Add to Cart — $29.99</button>
-              </div>
-            )}
-          </div>
         </div>
       )}
     </div>

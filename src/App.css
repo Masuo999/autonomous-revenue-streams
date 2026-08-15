@@ -45,12 +45,29 @@ body {
   color: #666;
 }
 
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
 .status-indicator {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.85rem;
   color: #666;
+}
+
+.lang-switcher {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background: white;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: #333;
+  cursor: pointer;
 }
 
 .pulse {

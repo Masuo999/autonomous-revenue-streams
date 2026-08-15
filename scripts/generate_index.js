@@ -13,11 +13,9 @@ if (!fs.existsSync(imagesDir)) {
   fs.mkdirSync(imagesDir, { recursive: true });
 }
 
-// Helper to download image
 function downloadImage(url, filepath) {
   return new Promise((resolve, reject) => {
     if (fs.existsSync(filepath)) {
-      // Already downloaded
       resolve();
       return;
     }
@@ -38,6 +36,12 @@ function downloadImage(url, filepath) {
   });
 }
 
+function extractFrontmatter(content, key) {
+  const regex = new RegExp(`^${key}:\\s*["']?([^"'\n]+)["']?`, 'm');
+  const match = content.match(regex);
+  return match ? match[1].trim() : null;
+}
+
 async function getFiles(dir) {
   const targetDir = path.join(publicDir, dir);
   if (!fs.existsSync(targetDir)) return [];
@@ -49,29 +53,22 @@ async function getFiles(dir) {
     const filePath = path.join(targetDir, file);
     const content = fs.readFileSync(filePath, 'utf-8');
     
-    // Extract title (h1 or title: in frontmatter)
-    let title = file.replace('.md', '');
-    const titleMatch = content.match(/^title:\s*["']?([^"'\n]+)["']?/m) || content.match(/^#\s+(.*)/m);
-    if (titleMatch) {
-      title = titleMatch[1].trim();
-    } else {
-      if (title.startsWith('smart_post_')) title = `Blog Insight #${title.split('_')[2]}`;
-      if (title.startsWith('smart_newsletter_')) title = `Tech Digest #${title.split('_')[2]}`;
-      if (title.startsWith('smart_product_')) title = `Premium Guide #${title.split('_')[2]}`;
-      if (title.startsWith('smart_tshirt_')) title = `Apparel Design #${title.split('_')[2]}`;
-    }
+    // Extract localized titles
+    let titleEn = extractFrontmatter(content, 'title_en') || file.replace('.md', '');
+    let titleJa = extractFrontmatter(content, 'title_ja') || titleEn;
+    let titleDe = extractFrontmatter(content, 'title_de') || titleEn;
 
-    // Extract image or fallback to Pollinations
+    // Extract image
     let imageUrl = '';
     const imageMatch = content.match(/!\[.*?\]\((https:\/\/image\.pollinations\.ai\/.*?)\)/);
     if (imageMatch) {
       imageUrl = imageMatch[1];
     } else {
-      const keywords = `${dir}_${title.replace(/[^a-zA-Z0-9]/g, '_')}_aesthetic`;
+      const keywords = `${dir}_${titleEn.replace(/[^a-zA-Z0-9]/g, '_')}_news`;
       imageUrl = `https://image.pollinations.ai/prompt/${keywords}?width=800&height=400&nologo=true`;
     }
 
-    // Download and cache image
+    // Download image
     const imageName = `${dir}_${file.replace('.md', '.jpg')}`;
     const imageLocalPath = path.join(imagesDir, imageName);
     try {
@@ -82,10 +79,17 @@ async function getFiles(dir) {
 
     results.push({
       path: `/${dir}/${file}`,
-      title: title,
+      title: {
+        en: titleEn,
+        ja: titleJa,
+        de: titleDe
+      },
       image: `/images/${imageName}`
     });
   }
+  
+  // Sort results so newest appears first (descending by filename which has timestamp or order)
+  results.sort((a, b) => b.path.localeCompare(a.path));
   return results;
 }
 
@@ -100,7 +104,7 @@ async function main() {
 
   const indexPath = path.join(publicDir, 'index.json');
   fs.writeFileSync(indexPath, JSON.stringify(index, null, 2));
-  console.log('Generated public/index.json and cached all thumbnails locally.');
+  console.log('Generated public/index.json with i18n support.');
 }
 
 main().catch(console.error);

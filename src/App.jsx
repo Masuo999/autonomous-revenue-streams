@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
   const [index, setIndex] = useState(null);
-  const [selectedContent, setSelectedContent] = useState(null);
+  const [selectedContent, setSelectedContent] = useState(null); // This is now an object {path, title, image}
   const [markdown, setMarkdown] = useState('');
   const [activeTab, setActiveTab] = useState('blog');
 
@@ -18,9 +18,14 @@ function App() {
   useEffect(() => {
     if (selectedContent) {
       setMarkdown('Loading...');
-      fetch(selectedContent)
+      fetch(selectedContent.path)
         .then(res => res.text())
-        .then(text => setMarkdown(text))
+        .then(text => {
+          // Remove the image markdown at the very top if it's the Pollinations image, 
+          // because we'll display it in the header banner nicely instead.
+          const cleanText = text.replace(/!\[.*?\]\(https:\/\/image\.pollinations\.ai\/.*?\)/, '');
+          setMarkdown(cleanText);
+        })
         .catch(err => console.error('Error fetching content:', err));
     }
   }, [selectedContent]);
@@ -34,29 +39,19 @@ function App() {
     );
   }
 
-  const getTitleFromFilename = (file) => {
-    const base = file.split('/').pop().replace('.md', '');
-    if (base.startsWith('smart_post_')) return `Blog Insight #${base.split('_')[2]}`;
-    if (base.startsWith('smart_newsletter_')) return `Tech Digest #${base.split('_')[2]}`;
-    if (base.startsWith('smart_product_')) return `Premium Guide #${base.split('_')[2]}`;
-    if (base.startsWith('smart_tshirt_')) return `Apparel Design #${base.split('_')[2]}`;
-    return base;
-  };
-
-  const renderGrid = (files) => (
+  const renderGrid = (items) => (
     <div className="content-grid">
-      {files.length === 0 ? <p className="empty-state">Content is being generated...</p> : null}
-      {files.map((file, i) => (
+      {items.length === 0 ? <p className="empty-state">Content is being generated...</p> : null}
+      {items.map((item, i) => (
         <div 
           key={i} 
           className="content-card"
-          onClick={() => setSelectedContent(file)}
+          onClick={() => setSelectedContent(item)}
         >
-          <div className="card-image-placeholder">
-            <span className="sparkle">✨</span>
+          <div className="card-image-placeholder" style={{ backgroundImage: `url(${item.image})` }}>
           </div>
           <div className="card-body">
-            <h3>{getTitleFromFilename(file)}</h3>
+            <h3>{item.title}</h3>
             <p className="read-more">Read More &rarr;</p>
           </div>
         </div>
@@ -98,33 +93,36 @@ function App() {
             &larr; Back to Hub
           </button>
           
+          <div className="reader-hero-image" style={{ backgroundImage: `url(${selectedContent.image})` }}>
+          </div>
+
           <article className="markdown-body">
             <ReactMarkdown>{markdown}</ReactMarkdown>
           </article>
 
           <div className="monetization-module">
-            {selectedContent.includes('/blog/') && (
+            {selectedContent.path.includes('/blog/') && (
               <div className="cta-box affiliate">
                 <h4>Recommended for you</h4>
                 <p>Discover the tools we used to build this article.</p>
                 <a href="#" className="btn-outline">View on Amazon</a>
               </div>
             )}
-            {selectedContent.includes('/newsletters/') && (
+            {selectedContent.path.includes('/newsletters/') && (
               <div className="cta-box premium">
                 <h4>Unlock Full Access</h4>
                 <p>Join our premium tier to read the rest of this digest and support autonomous journalism.</p>
                 <button className="btn-primary">Subscribe for $1.99/mo</button>
               </div>
             )}
-            {selectedContent.includes('/products/') && (
+            {selectedContent.path.includes('/products/') && (
               <div className="cta-box product">
                 <h4>Master This Skill</h4>
                 <p>Get the complete PDF guide and exclusive prompts.</p>
                 <button className="btn-primary">Buy Now — $14.99</button>
               </div>
             )}
-            {selectedContent.includes('/pod_products/') && (
+            {selectedContent.path.includes('/pod_products/') && (
               <div className="cta-box apparel">
                 <h4>Wear The Future</h4>
                 <p>Premium organic cotton. Printed on demand.</p>

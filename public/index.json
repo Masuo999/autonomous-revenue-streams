@@ -1,72 +1,316 @@
 {
   "blog": [
-    "/blog/1786709172188.md",
-    "/blog/1786712646599.md",
-    "/blog/1786717516756.md",
-    "/blog/smart_post_1.md",
-    "/blog/smart_post_10.md",
-    "/blog/smart_post_11.md",
-    "/blog/smart_post_12.md",
-    "/blog/smart_post_13.md",
-    "/blog/smart_post_2.md",
-    "/blog/smart_post_3.md",
-    "/blog/smart_post_4.md",
-    "/blog/smart_post_5.md",
-    "/blog/smart_post_6.md",
-    "/blog/smart_post_7.md",
-    "/blog/smart_post_8.md",
-    "/blog/smart_post_9.md"
+    {
+      "path": "/blog/1786709172188.md",
+      "title": "最新AIトレンドまとめ - 2026-08-14",
+      "image": "https://image.pollinations.ai/prompt/blog___AI__________2026_08_14_aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/blog/1786712646599.md",
+      "title": "最新AIトレンドまとめ - 2026-08-14",
+      "image": "https://image.pollinations.ai/prompt/blog___AI__________2026_08_14_aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/blog/1786717516756.md",
+      "title": "最新AIトレンドまとめ - 2026-08-14",
+      "image": "https://image.pollinations.ai/prompt/blog___AI__________2026_08_14_aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/blog/smart_post_1.md",
+      "title": "次世代AIエージェントの衝撃：私たちの働き方はどう変わるか？",
+      "image": "https://image.pollinations.ai/prompt/blog____AI__________________________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/blog/smart_post_10.md",
+      "title": "クォンタム・インターネットがもたらす「絶対にハッキングされない」通信網",
+      "image": "https://image.pollinations.ai/prompt/blog_____________________________________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/blog/smart_post_11.md",
+      "title": "デジタルオルファクション（人工嗅覚）が切り拓く新たなUX",
+      "image": "https://image.pollinations.ai/prompt/blog___________________________UX_aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/blog/smart_post_12.md",
+      "title": "DAO（自律分散型組織）が変える「会社」という概念",
+      "image": "https://image.pollinations.ai/prompt/blog_DAO_______________________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/blog/smart_post_13.md",
+      "title": "脳波インターフェース（BCI）がもたらす「思考による操作」の日常",
+      "image": "https://image.pollinations.ai/prompt/blog____________BCI___________________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/blog/smart_post_2.md",
+      "title": "プログラミング不要時代？ノーコードと生成AIが交差する未来",
+      "image": "https://image.pollinations.ai/prompt/blog_____________________AI________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/blog/smart_post_3.md",
+      "title": "AI時代のパーソナライズ学習：教育の未来はどう変わるか",
+      "image": "https://image.pollinations.ai/prompt/blog_AI__________________________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/blog/smart_post_4.md",
+      "title": "脳波×AIインターフェース：究極のハンズフリー操作がもたらす革新",
+      "image": "https://image.pollinations.ai/prompt/blog____AI____________________________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/blog/smart_post_5.md",
+      "title": "空間コンピューティング時代の到来：ディスプレイのない世界へ",
+      "image": "https://image.pollinations.ai/prompt/blog_______________________________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/blog/smart_post_6.md",
+      "title": "アンビエント・コンピューティング：意識せずにテクノロジーを使う時代",
+      "image": "https://image.pollinations.ai/prompt/blog___________________________________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/blog/smart_post_7.md",
+      "title": "バイオテクノロジーとAIの融合：個別化医療の最前線",
+      "image": "https://image.pollinations.ai/prompt/blog___________AI______________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/blog/smart_post_8.md",
+      "title": "AIとサステナビリティ：テクノロジーが救う地球の未来",
+      "image": "https://image.pollinations.ai/prompt/blog_AI_________________________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/blog/smart_post_9.md",
+      "title": "データ・ポイズニングからAIを守る：次世代サイバーセキュリティの最前線",
+      "image": "https://image.pollinations.ai/prompt/blog_____________AI______________________aesthetic?width=800&height=400&nologo=true"
+    }
   ],
   "newsletters": [
-    "/newsletters/newsletter-1786712681893.md",
-    "/newsletters/newsletter-1786717516809.md",
-    "/newsletters/smart_newsletter_1.md",
-    "/newsletters/smart_newsletter_10.md",
-    "/newsletters/smart_newsletter_11.md",
-    "/newsletters/smart_newsletter_12.md",
-    "/newsletters/smart_newsletter_13.md",
-    "/newsletters/smart_newsletter_2.md",
-    "/newsletters/smart_newsletter_3.md",
-    "/newsletters/smart_newsletter_4.md",
-    "/newsletters/smart_newsletter_5.md",
-    "/newsletters/smart_newsletter_6.md",
-    "/newsletters/smart_newsletter_7.md",
-    "/newsletters/smart_newsletter_8.md",
-    "/newsletters/smart_newsletter_9.md"
+    {
+      "path": "/newsletters/newsletter-1786712681893.md",
+      "title": "週間AI & Tech ニュースレター - 2026-08-14",
+      "image": "https://image.pollinations.ai/prompt/newsletters___AI___Tech___________2026_08_14_aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/newsletters/newsletter-1786717516809.md",
+      "title": "週間AI & Tech ニュースレター - 2026-08-14",
+      "image": "https://image.pollinations.ai/prompt/newsletters___AI___Tech___________2026_08_14_aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/newsletters/smart_newsletter_1.md",
+      "title": "Weekly AI & Tech Digest (Premium)",
+      "image": "https://image.pollinations.ai/prompt/newsletters_Weekly_AI___Tech_Digest__Premium__aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/newsletters/smart_newsletter_10.md",
+      "title": "Weekly AI & Tech Digest (Premium)",
+      "image": "https://image.pollinations.ai/prompt/newsletters_Weekly_AI___Tech_Digest__Premium__aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/newsletters/smart_newsletter_11.md",
+      "title": "Weekly AI & Tech Digest (Premium)",
+      "image": "https://image.pollinations.ai/prompt/newsletters_Weekly_AI___Tech_Digest__Premium__aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/newsletters/smart_newsletter_12.md",
+      "title": "Weekly AI & Tech Digest (Premium)",
+      "image": "https://image.pollinations.ai/prompt/newsletters_Weekly_AI___Tech_Digest__Premium__aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/newsletters/smart_newsletter_13.md",
+      "title": "Weekly AI & Tech Digest (Premium)",
+      "image": "https://image.pollinations.ai/prompt/newsletters_Weekly_AI___Tech_Digest__Premium__aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/newsletters/smart_newsletter_2.md",
+      "title": "Weekly AI & Tech Digest (Premium)",
+      "image": "https://image.pollinations.ai/prompt/newsletters_Weekly_AI___Tech_Digest__Premium__aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/newsletters/smart_newsletter_3.md",
+      "title": "Weekly AI & Tech Digest (Premium)",
+      "image": "https://image.pollinations.ai/prompt/newsletters_Weekly_AI___Tech_Digest__Premium__aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/newsletters/smart_newsletter_4.md",
+      "title": "Weekly AI & Tech Digest (Premium)",
+      "image": "https://image.pollinations.ai/prompt/newsletters_Weekly_AI___Tech_Digest__Premium__aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/newsletters/smart_newsletter_5.md",
+      "title": "Weekly AI & Tech Digest (Premium)",
+      "image": "https://image.pollinations.ai/prompt/newsletters_Weekly_AI___Tech_Digest__Premium__aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/newsletters/smart_newsletter_6.md",
+      "title": "Weekly AI & Tech Digest (Premium)",
+      "image": "https://image.pollinations.ai/prompt/newsletters_Weekly_AI___Tech_Digest__Premium__aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/newsletters/smart_newsletter_7.md",
+      "title": "Weekly AI & Tech Digest (Premium)",
+      "image": "https://image.pollinations.ai/prompt/newsletters_Weekly_AI___Tech_Digest__Premium__aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/newsletters/smart_newsletter_8.md",
+      "title": "Weekly AI & Tech Digest (Premium)",
+      "image": "https://image.pollinations.ai/prompt/newsletters_Weekly_AI___Tech_Digest__Premium__aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/newsletters/smart_newsletter_9.md",
+      "title": "Weekly AI & Tech Digest (Premium)",
+      "image": "https://image.pollinations.ai/prompt/newsletters_Weekly_AI___Tech_Digest__Premium__aesthetic?width=800&height=400&nologo=true"
+    }
   ],
   "products": [
-    "/products/product-1786712854232.md",
-    "/products/product-1786717516866.md",
-    "/products/smart_product_1.md",
-    "/products/smart_product_10.md",
-    "/products/smart_product_11.md",
-    "/products/smart_product_12.md",
-    "/products/smart_product_13.md",
-    "/products/smart_product_2.md",
-    "/products/smart_product_3.md",
-    "/products/smart_product_4.md",
-    "/products/smart_product_5.md",
-    "/products/smart_product_6.md",
-    "/products/smart_product_7.md",
-    "/products/smart_product_8.md",
-    "/products/smart_product_9.md"
+    {
+      "path": "/products/product-1786712854232.md",
+      "title": "プロンプトエンジニアリング・マスターガイド",
+      "image": "https://image.pollinations.ai/prompt/products_______________________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/products/product-1786717516866.md",
+      "title": "プロンプトエンジニアリング・マスターガイド",
+      "image": "https://image.pollinations.ai/prompt/products_______________________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/products/smart_product_1.md",
+      "title": "開発者のための「実践的AIエージェント構築ガイド」",
+      "image": "https://image.pollinations.ai/prompt/products____________AI_____________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/products/smart_product_10.md",
+      "title": "営業マンのための「AIロープレ・プロンプト完全攻略パック」",
+      "image": "https://image.pollinations.ai/prompt/products__________AI___________________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/products/smart_product_11.md",
+      "title": "英語学習者のための「自分専用AIネイティブ講師 構築レシピ」",
+      "image": "https://image.pollinations.ai/prompt/products_______________AI_______________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/products/smart_product_12.md",
+      "title": "投資家のための「AI活用によるアルゴリズムトレード入門」",
+      "image": "https://image.pollinations.ai/prompt/products_________AI___________________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/products/smart_product_13.md",
+      "title": "クリエイターのための「ミッドジャーニーV8 完全コントロール術」",
+      "image": "https://image.pollinations.ai/prompt/products____________________V8____________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/products/smart_product_2.md",
+      "title": "マーケターのための「AI画像生成パーフェクトガイド」",
+      "image": "https://image.pollinations.ai/prompt/products___________AI_______________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/products/smart_product_3.md",
+      "title": "業務効率化のための「Notion × AI 自動化テンプレート集」",
+      "image": "https://image.pollinations.ai/prompt/products___________Notion___AI_____________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/products/smart_product_4.md",
+      "title": "クリエイターのための「AI作曲・BGM生成プロンプト集」",
+      "image": "https://image.pollinations.ai/prompt/products____________AI___BGM__________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/products/smart_product_5.md",
+      "title": "「カスタムGPTs」収益化マスタークラス",
+      "image": "https://image.pollinations.ai/prompt/products______GPTs____________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/products/smart_product_6.md",
+      "title": "動画クリエイター向け「AIアバター自動生成ワークフロー構築ガイド」",
+      "image": "https://image.pollinations.ai/prompt/products____________AI_____________________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/products/smart_product_7.md",
+      "title": "ビジネスパーソンのための「生成AI 業務ハック大全」",
+      "image": "https://image.pollinations.ai/prompt/products________________AI__________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/products/smart_product_8.md",
+      "title": "学生・研究者のための「論文読解・執筆AIアシストマニュアル」",
+      "image": "https://image.pollinations.ai/prompt/products___________________AI___________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/products/smart_product_9.md",
+      "title": "個人開発者のための「Cursor × Claude 3 爆速コーディング実践集」",
+      "image": "https://image.pollinations.ai/prompt/products___________Cursor___Claude_3______________aesthetic?width=800&height=400&nologo=true"
+    }
   ],
   "pod_products": [
-    "/pod_products/smart_tshirt_1.md",
-    "/pod_products/smart_tshirt_10.md",
-    "/pod_products/smart_tshirt_11.md",
-    "/pod_products/smart_tshirt_12.md",
-    "/pod_products/smart_tshirt_13.md",
-    "/pod_products/smart_tshirt_2.md",
-    "/pod_products/smart_tshirt_3.md",
-    "/pod_products/smart_tshirt_4.md",
-    "/pod_products/smart_tshirt_5.md",
-    "/pod_products/smart_tshirt_6.md",
-    "/pod_products/smart_tshirt_7.md",
-    "/pod_products/smart_tshirt_8.md",
-    "/pod_products/smart_tshirt_9.md",
-    "/pod_products/tshirt-1786712968910.md",
-    "/pod_products/tshirt-1786717516919.md"
+    {
+      "path": "/pod_products/smart_tshirt_1.md",
+      "title": "サイバーパンク・ネオンサムライ Tシャツ",
+      "image": "https://image.pollinations.ai/prompt/pod_products_________________T____aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/pod_products/smart_tshirt_10.md",
+      "title": "ヴェイパーウェイヴ・ダビデ Tシャツ",
+      "image": "https://image.pollinations.ai/prompt/pod_products_______________T____aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/pod_products/smart_tshirt_11.md",
+      "title": "サイバー・タロット「THE FOOL (愚者)」 Tシャツ",
+      "image": "https://image.pollinations.ai/prompt/pod_products___________THE_FOOL_______T____aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/pod_products/smart_tshirt_12.md",
+      "title": "ジオメトリック・ウルフ Tシャツ",
+      "image": "https://image.pollinations.ai/prompt/pod_products_____________T____aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/pod_products/smart_tshirt_13.md",
+      "title": "サイバー・バグ Tシャツ",
+      "image": "https://image.pollinations.ai/prompt/pod_products_________T____aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/pod_products/smart_tshirt_2.md",
+      "title": "レトロ・ウェーブ シンセサイザー Tシャツ",
+      "image": "https://image.pollinations.ai/prompt/pod_products__________________T____aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/pod_products/smart_tshirt_3.md",
+      "title": "アストロ・ボタニカル パーカー",
+      "image": "https://image.pollinations.ai/prompt/pod_products_________________aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/pod_products/smart_tshirt_4.md",
+      "title": "AI生成 グリッチ・タイポグラフィ Tシャツ",
+      "image": "https://image.pollinations.ai/prompt/pod_products_AI________________T____aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/pod_products/smart_tshirt_5.md",
+      "title": "ゼン・ミニマリズム (Zen Minimalism) Tシャツ",
+      "image": "https://image.pollinations.ai/prompt/pod_products____________Zen_Minimalism__T____aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/pod_products/smart_tshirt_6.md",
+      "title": "バイオ・ルミネッセンス深海 Tシャツ",
+      "image": "https://image.pollinations.ai/prompt/pod_products_______________T____aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/pod_products/smart_tshirt_7.md",
+      "title": "アナログ・ノスタルジア Tシャツ",
+      "image": "https://image.pollinations.ai/prompt/pod_products_____________T____aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/pod_products/smart_tshirt_8.md",
+      "title": "エコ・フューチャリズム Tシャツ",
+      "image": "https://image.pollinations.ai/prompt/pod_products_____________T____aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/pod_products/smart_tshirt_9.md",
+      "title": "コズミック・キャット Tシャツ",
+      "image": "https://image.pollinations.ai/prompt/pod_products____________T____aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/pod_products/tshirt-1786712968910.md",
+      "title": "AI Robot グラフィックTシャツ",
+      "image": "https://image.pollinations.ai/prompt/pod_products_AI_Robot_______T____aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/pod_products/tshirt-1786717516919.md",
+      "title": "Vintage Synth グラフィックTシャツ",
+      "image": "https://image.pollinations.ai/prompt/pod_products_Vintage_Synth_______T____aesthetic?width=800&height=400&nologo=true"
+    }
   ],
-  "updatedAt": "2026-08-15T02:00:38.532Z"
+  "updatedAt": "2026-08-15T02:38:08.419Z"
 }

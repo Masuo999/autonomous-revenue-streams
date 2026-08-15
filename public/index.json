@@ -7,22 +7,18 @@
       "city": "tokyo",
       "title": {
         "en": "Shinjuku After Dark: The Four Checks to Make Before You Enter",
-        "ja": "夜の新宿：入店前に確認したい4つの安全チェック",
         "de": "Shinjuku bei Nacht: Vier Checks vor dem Betreten einer Bar"
       },
       "excerpt": {
         "en": "A practical, police-sourced checklist for avoiding touts, unclear drink plans and dating-app rip-off bars in Kabukicho.",
-        "ja": "客引き、分かりにくい飲み放題、マッチングアプリを使ったぼったくりを避けるための、警視庁情報に基づくチェックリスト。",
         "de": "Eine praktische, polizeilich belegte Checkliste gegen Schlepper, unklare Getränkepakete und Dating-App-Abzocke in Kabukicho."
       },
       "eyebrow": {
         "en": "Tokyo safety desk",
-        "ja": "東京・安全デスク",
         "de": "Tokyo Sicherheitsdesk"
       },
       "readingTime": {
         "en": "5 min read",
-        "ja": "読了5分",
         "de": "5 Min."
       },
       "verifiedAt": "2026-08-15",
@@ -36,22 +32,18 @@
       "city": "nagoya",
       "title": {
         "en": "Nagoya After Dark: Start With Food, Then Read the Room",
-        "ja": "名古屋の夜：食から始めて、栄・伏見を自分のペースで歩く",
         "de": "Nagoya bei Nacht: Erst essen, dann die Stimmung lesen"
       },
       "excerpt": {
         "en": "A grounded first-night plan for Sakae, Fushimi and Nagoya Station—built around local food, clear prices and a route home you control.",
-        "ja": "栄・伏見・名古屋駅で、名古屋めし、明確な料金、自分で決める帰宅ルートを軸に夜を楽しむ実用プラン。",
         "de": "Ein bodenständiger Plan für Sakae, Fushimi und den Bahnhof Nagoya: lokales Essen, klare Preise und ein selbst bestimmter Heimweg."
       },
       "eyebrow": {
         "en": "Nagoya night desk",
-        "ja": "名古屋・ナイトデスク",
         "de": "Nagoya Night Desk"
       },
       "readingTime": {
         "en": "5 min read",
-        "ja": "読了5分",
         "de": "5 Min."
       },
       "verifiedAt": "2026-08-15",
@@ -65,22 +57,18 @@
       "city": "hamamatsu",
       "title": {
         "en": "Hamamatsu After Dark: Music, Yurakugai and the Last Ride Home",
-        "ja": "浜松の夜：音楽の街、有楽街、帰りの交通を楽しむ",
         "de": "Hamamatsu bei Nacht: Musik, Yurakugai und die letzte Heimfahrt"
       },
       "excerpt": {
         "en": "A compact guide to Hamamatsu",
-        "ja": "音楽の街という背景、地元でのマナー、もう一杯の前に確認したい交通をまとめた浜松中心街の夜ガイド。",
         "de": "Ein kompakter Guide für Hamamatsus Zentrum: Musikstadt, lokale Etikette und der Verkehrscheck vor der nächsten Runde."
       },
       "eyebrow": {
         "en": "Hamamatsu night desk",
-        "ja": "浜松・ナイトデスク",
         "de": "Hamamatsu Night Desk"
       },
       "readingTime": {
         "en": "5 min read",
-        "ja": "読了5分",
         "de": "5 Min."
       },
       "verifiedAt": "2026-08-15",
@@ -96,22 +84,18 @@
       "city": "tokyo",
       "title": {
         "en": "Izakaya Without Anxiety: What the Bill and Table Customs Mean",
-        "ja": "初めての居酒屋：お通し・会計・テーブルマナーの基本",
         "de": "Entspannt ins Izakaya: Rechnung und Tischkultur verstehen"
       },
       "excerpt": {
         "en": "Understand shared plates, the otoshi table charge, drink-pouring customs and tipping before your first Japanese pub visit.",
-        "ja": "初めて日本の居酒屋を訪れる人に向けて、取り分け、お通し、飲み物のマナー、チップについて公的観光情報から解説します。",
         "de": "Geteilte Gerichte, Otoshi-Gebühr, Einschenken und Trinkgeld — verständlich vor dem ersten Izakaya-Besuch erklärt."
       },
       "eyebrow": {
         "en": "Culture decoder",
-        "ja": "文化・マナー解説",
         "de": "Kultur erklärt"
       },
       "readingTime": {
         "en": "4 min read",
-        "ja": "読了4分",
         "de": "4 Min."
       },
       "verifiedAt": "2026-08-15",
@@ -127,22 +111,18 @@
       "city": "tokyo",
       "title": {
         "en": "Tokyo First-Night Safety Card: Save These Numbers Before You Go Out",
-        "ja": "東京・初日の夜の安全カード：外出前に保存する連絡先",
         "de": "Tokyo-Sicherheitskarte für die erste Nacht: Diese Nummern speichern"
       },
       "excerpt": {
         "en": "A free, practical reference for police, ambulance, visitor support and the decisions to make before entering an unfamiliar venue.",
-        "ja": "警察、救急、訪日客支援の連絡先と、知らない店へ入る前の判断事項をまとめた無料の実用カード。",
         "de": "Kostenlose Kurzübersicht mit Polizei, Rettungsdienst, Besucherhilfe und wichtigen Entscheidungen vor einem unbekannten Lokal."
       },
       "eyebrow": {
         "en": "Free field guide",
-        "ja": "無料実用ガイド",
         "de": "Kostenloser Guide"
       },
       "readingTime": {
         "en": "3 min read",
-        "ja": "読了3分",
         "de": "3 Min."
       },
       "verifiedAt": "2026-08-15",
@@ -150,5 +130,5 @@
       "image": "/images/izakaya-interior-editorial.jpg"
     }
   ],
-  "updatedAt": "2026-08-15T13:27:40.613Z"
+  "updatedAt": "2026-08-15T14:55:20.825Z"
 }

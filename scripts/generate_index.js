@@ -15,7 +15,6 @@ function extractFrontmatter(content, key) {
 function localize(content, key, fallback = '') {
   return {
     en: extractFrontmatter(content, `${key}_en`) || fallback,
-    ja: extractFrontmatter(content, `${key}_ja`) || fallback,
     de: extractFrontmatter(content, `${key}_de`) || fallback,
   };
 }

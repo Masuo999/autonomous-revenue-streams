@@ -36,6 +36,7 @@ const ui = {
     checkoutConnecting: 'Secure checkout is being connected',
     checkoutStarting: 'Opening secure checkout…',
     checkoutUnavailable: 'Checkout is not live yet. No payment will be taken.',
+    regionUnavailable: 'This product is not offered for purchase in Japan.',
     checkoutError: 'Checkout could not be opened. Please try again.',
     checkoutSuccess: 'Payment confirmed. Your field pack is ready.',
     checkoutCancelled: 'Checkout cancelled. Nothing was charged.',
@@ -45,47 +46,6 @@ const ui = {
     footer: 'Japan after dark, without the tourist-trap nonsense.',
     photoCredit: 'Photography from Pexels',
     loading: 'Opening the night desk…',
-  },
-  ja: {
-    safety: '安全情報', culture: 'マナー', guides: '実用ガイド',
-    tokyo: '東京', nagoya: '名古屋', hamamatsu: '浜松', allCities: '3都市すべて',
-    heroKicker: '独立ナイトデスク / 東京・名古屋・浜松',
-    heroTitle: '三都市。', heroAccent: '夜はそれぞれ違う。',
-    heroSub: '圧倒的な東京、観光客の波から一歩離れた名古屋、地元の距離感で楽しむ浜松。3都市の夜を、公的情報と現地の文脈から実用的に解説します。',
-    heroCta: '都市別デスクを選ぶ',
-    fieldNote: 'TOKYO / NAGOYA / HAMAMATSU / 2026',
-    deskTitle: '3都市のナイトデスク',
-    deskIntro: '今夜出かける都市を選んでください。情報は都市ごとに分け、公的出典を確認して掲載します。',
-    tokyoNote: '新宿・速い・警戒を保つ', nagoyaNote: '栄・食から入る・落ち着く', hamamatsuNote: '有楽街・音楽・地元のペース',
-    readStory: '記事を読む',
-    verified: '確認日', sources: '件の公的出典',
-    ruleTitle: '毎晩守る、3つのルール。',
-    ruleOne: '店は自分で選ぶ。', ruleOneBody: '客引きや会ったばかりの相手に、店選びを任せない。',
-    ruleTwo: '総額を確認する。', ruleTwoBody: '席料、時間、税、サービス料を最初の注文前に聞く。',
-    ruleThree: '主導権を保つ。', ruleThreeBody: 'カード、携帯電話、帰宅手段は自分で管理する。',
-    promiseTitle: '偽物の「裏情報」は扱いません。',
-    promiseBody: '架空の店、広告を隠したランキングは掲載しません。公的機関と信頼できる観光情報を起点に、今夜使える判断材料へ翻訳します。',
-    productKicker: '03 / 実用パック',
-    productTitle: '焦る前に、手順を持ち歩く。',
-    productBody: '東京・名古屋・浜松の初夜に必要な判断を8ページにまとめた英語版PDF。外出前にオフライン保存できます。',
-    productFeatureOne: '3都市それぞれの夜の行動プラン',
-    productFeatureTwo: '60秒でできる店・料金チェック',
-    productFeatureThree: '帰路、緊急番号、公的情報リンク',
-    productEdition: 'PDF・英語・2026年版',
-    productPrice: '$24', productOneTime: '買い切り',
-    buyGuide: '3都市パックを購入',
-    checkoutConnecting: '安全な決済を接続中です',
-    checkoutStarting: '決済ページを開いています…',
-    checkoutUnavailable: '決済はまだ公開されていません。料金は発生しません。',
-    checkoutError: '決済ページを開けませんでした。もう一度お試しください。',
-    checkoutSuccess: 'お支払いを確認しました。ガイドを取得できます。',
-    checkoutCancelled: '決済をキャンセルしました。請求はありません。',
-    downloadGuide: 'PDFをダウンロード',
-    securePayment: 'Stripeによる買い切り決済。支払い済みセッションを確認してダウンロードを許可します。',
-    back: 'ナイトデスクへ戻る',
-    footer: '観光客向けの罠に振り回されず、日本の夜を楽しむ。',
-    photoCredit: '写真：Pexels',
-    loading: 'ナイトデスクを開いています…',
   },
   de: {
     safety: 'Sicherheit', culture: 'Etikette', guides: 'Praxis-Guides',
@@ -118,6 +78,7 @@ const ui = {
     checkoutConnecting: 'Sicherer Checkout wird verbunden',
     checkoutStarting: 'Sicherer Checkout wird geöffnet…',
     checkoutUnavailable: 'Der Checkout ist noch nicht live. Es wird nichts berechnet.',
+    regionUnavailable: 'Dieses Produkt wird in Japan nicht zum Kauf angeboten.',
     checkoutError: 'Der Checkout konnte nicht geöffnet werden. Bitte erneut versuchen.',
     checkoutSuccess: 'Zahlung bestätigt. Dein Field Pack ist bereit.',
     checkoutCancelled: 'Checkout abgebrochen. Es wurde nichts berechnet.',
@@ -157,6 +118,7 @@ function App() {
   const [selectedContent, setSelectedContent] = useState(null);
   const [markdown, setMarkdown] = useState('');
   const [paymentsReady, setPaymentsReady] = useState(null);
+  const [salesAllowed, setSalesAllowed] = useState(null);
   const [checkoutStatus, setCheckoutStatus] = useState('idle');
   const [paidSessionId, setPaidSessionId] = useState('');
 
@@ -178,8 +140,14 @@ function App() {
   useEffect(() => {
     fetch('/api/health')
       .then((response) => response.json())
-      .then((health) => setPaymentsReady(health.payments === 'ready'))
-      .catch(() => setPaymentsReady(false));
+      .then((health) => {
+        setPaymentsReady(health.payments === 'ready');
+        setSalesAllowed(health.salesRegion !== 'unavailable-in-japan');
+      })
+      .catch(() => {
+        setPaymentsReady(false);
+        setSalesAllowed(null);
+      });
 
     const params = new URLSearchParams(window.location.search);
     const checkout = params.get('checkout');
@@ -296,7 +264,7 @@ function App() {
         <label className="language-control">
           <span className="sr-only">Language</span>
           <select value={lang} onChange={(event) => setLang(event.target.value)}>
-            <option value="en">EN</option><option value="ja">日本語</option><option value="de">DE</option>
+            <option value="en">EN</option><option value="de">DE</option>
           </select>
         </label>
       </nav>
@@ -394,10 +362,12 @@ function App() {
                     {ui[lang].downloadGuide}<span>↓</span>
                   </a>
                 ) : (
-                  <button type="button" className="buy-button" onClick={startCheckout} disabled={paymentsReady !== true || checkoutStatus === 'starting'}>
+                  <button type="button" className="buy-button" onClick={startCheckout} disabled={paymentsReady !== true || salesAllowed !== true || checkoutStatus === 'starting'}>
                     {checkoutStatus === 'starting'
                       ? ui[lang].checkoutStarting
-                      : paymentsReady === false
+                      : salesAllowed === false
+                        ? ui[lang].regionUnavailable
+                        : paymentsReady === false
                         ? ui[lang].checkoutConnecting
                         : ui[lang].buyGuide}
                     <span>→</span>
@@ -408,7 +378,8 @@ function App() {
                 {checkoutStatus === 'success' && ui[lang].checkoutSuccess}
                 {checkoutStatus === 'cancelled' && ui[lang].checkoutCancelled}
                 {checkoutStatus === 'error' && ui[lang].checkoutError}
-                {checkoutStatus === 'idle' && paymentsReady === false && ui[lang].checkoutUnavailable}
+                {checkoutStatus === 'idle' && salesAllowed === false && ui[lang].regionUnavailable}
+                {checkoutStatus === 'idle' && salesAllowed !== false && paymentsReady === false && ui[lang].checkoutUnavailable}
               </div>
               <small className="payment-note">{ui[lang].securePayment}</small>
             </div>

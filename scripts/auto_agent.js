@@ -95,7 +95,7 @@ function buildPrompt(topic, sources, verifiedAt) {
     .join('\n\n');
 
   return `You are the source-locked editorial engine for Night Compass Japan.
-Write one useful briefing in English, Japanese and German.
+Write one useful briefing in English and German.
 
 NON-NEGOTIABLE RULES:
 - Use only facts stated in the supplied source text.
@@ -114,23 +114,19 @@ verified: true
 slug: ${topic.slug}-${verifiedAt}
 city: ${topic.city}
 title_en: "..."
-title_ja: "..."
 title_de: "..."
 excerpt_en: "..."
-excerpt_ja: "..."
 excerpt_de: "..."
 eyebrow_en: "Official-source briefing"
-eyebrow_ja: "公的出典ブリーフィング"
 eyebrow_de: "Briefing aus offiziellen Quellen"
 reading_time_en: "5 min read"
-reading_time_ja: "読了5分"
 reading_time_de: "5 Min."
 verified_at: ${verifiedAt}
 source_count: ${sources.length}
 image: ${topic.image}
 ---
 
-Write the English article first, then ---LANG:JA---, then ---LANG:DE---.
+Write the English article first, then ---LANG:DE---.
 Each language section needs a title, 3-5 practical headings and Official sources.
 
 FOCUS: ${topic.focus}
@@ -146,7 +142,6 @@ function validateArticle(article, topic, verifiedAt) {
     `verified_at: ${verifiedAt}`,
     `city: ${topic.city}`,
     `image: ${topic.image}`,
-    '---LANG:JA---',
     '---LANG:DE---',
     ...topic.sources,
   ];

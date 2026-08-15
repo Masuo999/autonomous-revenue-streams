@@ -14,6 +14,15 @@ const stripe = stripeKey
   ? new Stripe(stripeKey, { apiVersion: '2026-06-24.dahlia' })
   : null;
 
+function requestCountry(req) {
+  const country = req.headers['x-vercel-ip-country'];
+  return typeof country === 'string' ? country.toUpperCase() : 'UNKNOWN';
+}
+
+function salesAvailable(req) {
+  return requestCountry(req) !== 'JP';
+}
+
 const product = {
   id: 'night-compass-three-city-pack',
   file: path.resolve(process.cwd(), 'output/pdf/night-compass-three-city-pack.pdf'),
@@ -22,15 +31,24 @@ const product = {
 app.use(cors({ origin: allowedOrigins }));
 app.use(express.json({ limit: '100kb' }));
 
-app.get('/api/health', (_req, res) => {
+app.get('/api/health', (req, res) => {
+  res.setHeader('Cache-Control', 'private, no-store, max-age=0');
+  res.setHeader('Vary', 'X-Vercel-IP-Country');
   res.json({
     service: 'Night Compass Japan',
     status: 'ok',
     payments: stripe && stripePriceId && existsSync(product.file) ? 'ready' : 'not-configured',
+    salesRegion: salesAvailable(req) ? 'available' : 'unavailable-in-japan',
   });
 });
 
 app.post('/api/create-checkout-session', async (req, res) => {
+  if (!salesAvailable(req)) {
+    return res.status(451).json({
+      error: 'This product is not offered for purchase in Japan.',
+    });
+  }
+
   if (!stripe || !stripePriceId || !existsSync(product.file)) {
     return res.status(503).json({
       error: 'Secure checkout is being connected. Please check back shortly.',
@@ -42,6 +60,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
     const successOrigin = allowedOrigins.includes(requestOrigin) ? requestOrigin : publicOrigin;
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
+      billing_address_collection: 'required',
       integration_identifier: 'nightcompass_mtzqkavu',
       line_items: [
         {
@@ -49,7 +68,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
           price: stripePriceId,
         },
       ],
-      metadata: { product: product.id },
+      metadata: { product: product.id, sales_region: requestCountry(req) },
       success_url: `${successOrigin}/?checkout=success&session_id={CHECKOUT_SESSION_ID}#guide`,
       cancel_url: `${successOrigin}/?checkout=cancelled#guide`,
     });

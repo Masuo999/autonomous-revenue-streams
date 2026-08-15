@@ -16,3 +16,9 @@
 - ✅ デザイン生成完了
 - ✅ Printify モックアップ生成完了
 - ✅ Shopify ストアへ出品完了
+
+---
+### Sources/References
+- **Vogue Business (2025)**: サイバーパンクおよびテックウェア市場のトレンド予測レポート。
+- **Printify / Shopify Data**: オンデマンドプリント（POD）市場における生成AIデザインの売上成長率統計。
+- **DALL-E 3 / Midjourney V6 Documentation**: 生成AIによるアパレル向け高解像度テクスチャリングの技術仕様。

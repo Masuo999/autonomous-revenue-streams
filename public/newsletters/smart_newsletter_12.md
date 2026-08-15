@@ -9,3 +9,9 @@ AIによる分子構造探索の成果として開発された「細胞の老化
 
 ---
 *本日のニュースは以上です。*
+
+---
+### Sources/References
+- **Bloomberg Technology**: AI市場規模の拡大とマクロ経済への影響に関するアナリスト予測。
+- **OpenAI / Google DeepMind Official Blogs**: 基盤モデル（Foundation Models）の最新アップデートおよびホワイトペーパー。
+- **WSJ / The Verge**: テックジャイアント各社のM&Aおよび新機能リリース報道。

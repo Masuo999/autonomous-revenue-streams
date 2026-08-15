@@ -21,8 +21,8 @@ function App() {
       fetch(selectedContent.path)
         .then(res => res.text())
         .then(text => {
-          // Remove frontmatter
-          let cleanText = text.replace(/^---\n[\s\S]*?\n---\n/, '');
+          // Remove frontmatter (handles both LF and CRLF)
+          let cleanText = text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '');
           
           // Remove the pollinations image tag at the very top
           cleanText = cleanText.replace(/!\[.*?\]\(https:\/\/image\.pollinations\.ai\/.*?\)/, '');

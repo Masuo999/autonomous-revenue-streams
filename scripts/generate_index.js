@@ -1,17 +1,51 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import https from 'https';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-function getFiles(dir) {
-  const targetDir = path.join(__dirname, '..', 'public', dir);
+const publicDir = path.join(__dirname, '..', 'public');
+const imagesDir = path.join(publicDir, 'images');
+
+if (!fs.existsSync(imagesDir)) {
+  fs.mkdirSync(imagesDir, { recursive: true });
+}
+
+// Helper to download image
+function downloadImage(url, filepath) {
+  return new Promise((resolve, reject) => {
+    if (fs.existsSync(filepath)) {
+      // Already downloaded
+      resolve();
+      return;
+    }
+    console.log(`Downloading ${url} to ${filepath}`);
+    https.get(url, (res) => {
+      if (res.statusCode === 200 || res.statusCode === 301 || res.statusCode === 302) {
+        if (res.statusCode === 301 || res.statusCode === 302) {
+           return downloadImage(res.headers.location, filepath).then(resolve).catch(reject);
+        }
+        res.pipe(fs.createWriteStream(filepath))
+           .on('error', reject)
+           .once('close', () => resolve());
+      } else {
+        res.resume();
+        reject(new Error(`Request Failed With a Status Code: ${res.statusCode}`));
+      }
+    }).on('error', reject);
+  });
+}
+
+async function getFiles(dir) {
+  const targetDir = path.join(publicDir, dir);
   if (!fs.existsSync(targetDir)) return [];
   
   const files = fs.readdirSync(targetDir).filter(file => file.endsWith('.md'));
-  
-  return files.map(file => {
+  const results = [];
+
+  for (const file of files) {
     const filePath = path.join(targetDir, file);
     const content = fs.readFileSync(filePath, 'utf-8');
     
@@ -28,32 +62,45 @@ function getFiles(dir) {
     }
 
     // Extract image or fallback to Pollinations
-    let image = '';
+    let imageUrl = '';
     const imageMatch = content.match(/!\[.*?\]\((https:\/\/image\.pollinations\.ai\/.*?)\)/);
     if (imageMatch) {
-      image = imageMatch[1];
+      imageUrl = imageMatch[1];
     } else {
-      // Fallback: Generate a pollinations URL based on the category and file name so it's consistent
       const keywords = `${dir}_${title.replace(/[^a-zA-Z0-9]/g, '_')}_aesthetic`;
-      image = `https://image.pollinations.ai/prompt/${keywords}?width=800&height=400&nologo=true`;
+      imageUrl = `https://image.pollinations.ai/prompt/${keywords}?width=800&height=400&nologo=true`;
     }
 
-    return {
+    // Download and cache image
+    const imageName = `${dir}_${file.replace('.md', '.jpg')}`;
+    const imageLocalPath = path.join(imagesDir, imageName);
+    try {
+      await downloadImage(imageUrl, imageLocalPath);
+    } catch (e) {
+      console.error(`Failed to download image for ${file}:`, e.message);
+    }
+
+    results.push({
       path: `/${dir}/${file}`,
       title: title,
-      image: image
-    };
-  });
+      image: `/images/${imageName}`
+    });
+  }
+  return results;
 }
 
-const index = {
-  blog: getFiles('blog'),
-  newsletters: getFiles('newsletters'),
-  products: getFiles('products'),
-  pod_products: getFiles('pod_products'),
-  updatedAt: new Date().toISOString()
-};
+async function main() {
+  const index = {
+    blog: await getFiles('blog'),
+    newsletters: await getFiles('newsletters'),
+    products: await getFiles('products'),
+    pod_products: await getFiles('pod_products'),
+    updatedAt: new Date().toISOString()
+  };
 
-const indexPath = path.join(__dirname, '..', 'public', 'index.json');
-fs.writeFileSync(indexPath, JSON.stringify(index, null, 2));
-console.log('Generated public/index.json with thumbnails and titles');
+  const indexPath = path.join(publicDir, 'index.json');
+  fs.writeFileSync(indexPath, JSON.stringify(index, null, 2));
+  console.log('Generated public/index.json and cached all thumbnails locally.');
+}
+
+main().catch(console.error);

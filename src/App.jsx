@@ -21,9 +21,12 @@ function App() {
       fetch(selectedContent.path)
         .then(res => res.text())
         .then(text => {
-          // Remove the image markdown at the very top if it's the Pollinations image, 
-          // because we'll display it in the header banner nicely instead.
-          const cleanText = text.replace(/!\[.*?\]\(https:\/\/image\.pollinations\.ai\/.*?\)/, '');
+          // Remove frontmatter
+          let cleanText = text.replace(/^---\n[\s\S]*?\n---\n/, '');
+          
+          // Remove the pollinations image tag at the very top
+          cleanText = cleanText.replace(/!\[.*?\]\(https:\/\/image\.pollinations\.ai\/.*?\)/, '');
+          
           setMarkdown(cleanText);
         })
         .catch(err => console.error('Error fetching content:', err));

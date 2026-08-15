@@ -1,6 +1,15 @@
 {
   "blog": [
     {
+      "path": "/blog/news_1786779789532.md",
+      "title": {
+        "en": "The Hyperloop Effect: How Next-Gen Tech is Redefining Urban Mobility",
+        "ja": "ハイパーループ効果：次世代技術が都市モビリティを再定義する方法",
+        "de": "Der Hyperloop-Effekt: Wie Next-Generation-Technologie urbane Mobilität neu definiert"
+      },
+      "image": "/images/blog_news_1786779789532.jpg"
+    },
+    {
       "path": "/blog/ai_gaming_trends_2026.md",
       "title": {
         "en": "AI in Gaming 2026: The End of the Debate and the Rise of Dynamic NPCs",
@@ -37,6 +46,15 @@
         "de": "Dating in Tokio 2026: Jenseits von Tinder und das Überleben in Kabukicho"
       },
       "image": "/images/newsletters_tokyo_dating_apps_2026.jpg"
+    },
+    {
+      "path": "/newsletters/dating_1786779789532.md",
+      "title": {
+        "en": "The Deep Dive: An Insider’s Guide to Dating Culture, Apps, and Romance in Tokyo",
+        "ja": "深掘りガイド：東京の恋愛文化、アプリ、そしてロマンスのためのインサイダー情報",
+        "de": "Der Deep Dive: Ein Insider-Guide zu Dating-Kultur, Apps und Romantik in Tokio"
+      },
+      "image": "/images/newsletters_dating_1786779789532.jpg"
     }
   ],
   "products": [
@@ -57,9 +75,27 @@
         "de": "Der Tokio Nightlife Insider Guide: Sicher und tief vernetzen"
       },
       "image": "/images/products_tokyo_nightlife_guide.jpg"
+    },
+    {
+      "path": "/products/guide_1786779789532.md",
+      "title": {
+        "en": "The Ultimate Survival Guide to Tokyo Nightlife and Modern Japanese Romance",
+        "ja": "東京夜のサバイバルガイド：日本の恋愛と文化を攻略する決定版",
+        "de": "Der ultimative Überlebensführer für das Tokyo-Nachtleben und japanische Romantik"
+      },
+      "image": "/images/products_guide_1786779789532.jpg"
     }
   ],
   "pod_products": [
+    {
+      "path": "/pod_products/shirt_1786779789532.md",
+      "title": {
+        "en": "The Neon Samurai Tee: Merging Cyberpunk Grit with Akihabara Street Style",
+        "ja": "ネオン侍Tee：サイバーパンクの荒々しさと秋葉原のストリートスタイルを融合する",
+        "de": "Das Neon-Samurai-Shirt: Fusion aus Cyberpunk-Ästhetik und Akihabara-Streetwear"
+      },
+      "image": "/images/pod_products_shirt_1786779789532.jpg"
+    },
     {
       "path": "/pod_products/cyber_shinjuku_tshirt.md",
       "title": {
@@ -79,5 +115,5 @@
       "image": "/images/pod_products_cyber_akiba_ghost_tee.jpg"
     }
   ],
-  "updatedAt": "2026-08-15T07:38:29.485Z"
+  "updatedAt": "2026-08-15T07:49:26.995Z"
 }

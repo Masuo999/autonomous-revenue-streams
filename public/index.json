@@ -41,6 +41,11 @@
       "image": "https://image.pollinations.ai/prompt/blog____________BCI___________________aesthetic?width=800&height=400&nologo=true"
     },
     {
+      "path": "/blog/smart_post_14.md",
+      "title": "空飛ぶラストワンマイル：自律型ドローン配送の最前線",
+      "image": "https://image.pollinations.ai/prompt/autonomous_delivery_drone_city?width=800&height=400&nologo=true"
+    },
+    {
       "path": "/blog/smart_post_2.md",
       "title": "プログラミング不要時代？ノーコードと生成AIが交差する未来",
       "image": "https://image.pollinations.ai/prompt/blog_____________________AI________aesthetic?width=800&height=400&nologo=true"
@@ -116,6 +121,11 @@
       "path": "/newsletters/smart_newsletter_13.md",
       "title": "Weekly AI & Tech Digest (Premium)",
       "image": "https://image.pollinations.ai/prompt/newsletters_Weekly_AI___Tech_Digest__Premium__aesthetic?width=800&height=400&nologo=true"
+    },
+    {
+      "path": "/newsletters/smart_newsletter_14.md",
+      "title": "Weekly AI & Tech Digest (Premium)",
+      "image": "https://image.pollinations.ai/prompt/holographic_smartphone_display?width=800&height=400&nologo=true"
     },
     {
       "path": "/newsletters/smart_newsletter_2.md",
@@ -195,6 +205,11 @@
       "image": "https://image.pollinations.ai/prompt/products____________________V8____________aesthetic?width=800&height=400&nologo=true"
     },
     {
+      "path": "/products/smart_product_14.md",
+      "title": "企業のIT担当者向け「AIを活用したゼロトラスト・セキュリティ構築ガイド」",
+      "image": "https://image.pollinations.ai/prompt/cyber_security_hacker_code?width=800&height=400&nologo=true"
+    },
+    {
       "path": "/products/smart_product_2.md",
       "title": "マーケターのための「AI画像生成パーフェクトガイド」",
       "image": "https://image.pollinations.ai/prompt/products___________AI_______________aesthetic?width=800&height=400&nologo=true"
@@ -262,6 +277,11 @@
       "image": "https://image.pollinations.ai/prompt/pod_products_________T____aesthetic?width=800&height=400&nologo=true"
     },
     {
+      "path": "/pod_products/smart_tshirt_14.md",
+      "title": "ネオン・サムライ Tシャツ",
+      "image": "https://image.pollinations.ai/prompt/neon_tokyo_samurai_vaporwave?width=800&height=400&nologo=true"
+    },
+    {
       "path": "/pod_products/smart_tshirt_2.md",
       "title": "レトロ・ウェーブ シンセサイザー Tシャツ",
       "image": "https://image.pollinations.ai/prompt/pod_products__________________T____aesthetic?width=800&height=400&nologo=true"
@@ -312,5 +332,5 @@
       "image": "https://image.pollinations.ai/prompt/pod_products_Vintage_Synth_______T____aesthetic?width=800&height=400&nologo=true"
     }
   ],
-  "updatedAt": "2026-08-15T02:38:08.419Z"
+  "updatedAt": "2026-08-15T03:29:04.914Z"
 }

@@ -74,11 +74,8 @@ function App() {
           let targetText = cleanText; // fallback to whole text
 
           if (segments.length > 1) {
-            // Document has LANG markers
-            // Format is typically: [english text, "JA", japanese text, "DE", german text]
-            // We need to parse it properly
             let currentLang = 'en';
-            let extracted = segments[0]; // first chunk is usually EN if no marker
+            let extracted = segments[0];
 
             for (let i = 1; i < segments.length; i+=2) {
               const marker = segments[i].toLowerCase();
@@ -88,7 +85,6 @@ function App() {
                 break;
               }
               if (lang === 'en' && extracted.trim() === '') {
-                 // if EN was first but empty, look for EN marker
                  if (marker === 'en') extracted = content;
               }
             }
@@ -96,8 +92,30 @@ function App() {
           }
           
           setMarkdown(targetText.trim());
+
+          // Update SEO Title & Meta Description dynamically
+          const currentTitle = selectedContent.title[lang] || selectedContent.title.en;
+          document.title = `${currentTitle} | GIGAAI`;
+          
+          let metaDesc = document.querySelector('meta[name="description"]');
+          if (!metaDesc) {
+            metaDesc = document.createElement('meta');
+            metaDesc.name = 'description';
+            document.head.appendChild(metaDesc);
+          }
+          // Use first 150 chars of markdown as description
+          const plainText = targetText.replace(/[#*`_]/g, '').trim().substring(0, 150);
+          metaDesc.content = plainText + '...';
+
         })
         .catch(err => console.error('Error fetching content:', err));
+    } else {
+      // Reset SEO for home page
+      document.title = `GIGAAI - ${ui[lang].heroTitle} ${ui[lang].heroSpan}`;
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.content = ui[lang].heroSub;
+      }
     }
   }, [selectedContent, lang]);
 

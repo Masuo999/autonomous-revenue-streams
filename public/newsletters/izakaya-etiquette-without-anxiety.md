@@ -16,6 +16,7 @@ reading_time_ja: "読了4分"
 reading_time_de: "4 Min."
 verified_at: 2026-08-15
 source_count: 3
+image: /images/japanese-bar-editorial.jpg
 ---
 # Izakaya Without Anxiety: What the Bill and Table Customs Mean
 

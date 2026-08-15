@@ -16,6 +16,7 @@ reading_time_ja: "読了3分"
 reading_time_de: "3 Min."
 verified_at: 2026-08-15
 source_count: 4
+image: /images/izakaya-interior-editorial.jpg
 ---
 # Tokyo First-Night Safety Card
 

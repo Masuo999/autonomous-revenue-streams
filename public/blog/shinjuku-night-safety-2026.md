@@ -16,6 +16,7 @@ reading_time_ja: "読了5分"
 reading_time_de: "5 Min."
 verified_at: 2026-08-15
 source_count: 3
+image: /images/tokyo-night-editorial.jpg
 ---
 # Shinjuku After Dark: The Four Checks to Make Before You Enter
 

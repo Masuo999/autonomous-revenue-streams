@@ -9,16 +9,13 @@ const publicOrigin = process.env.PUBLIC_SITE_ORIGIN || 'https://autonomous-reven
 const previewOrigin = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null;
 const allowedOrigins = [publicOrigin, previewOrigin, 'http://localhost:5173'].filter(Boolean);
 const stripeKey = process.env.STRIPE_RESTRICTED_KEY || process.env.STRIPE_SECRET_KEY;
+const stripePriceId = process.env.STRIPE_PRICE_ID;
 const stripe = stripeKey
   ? new Stripe(stripeKey, { apiVersion: '2026-06-24.dahlia' })
   : null;
 
 const product = {
   id: 'night-compass-three-city-pack',
-  name: 'Night Compass Japan - Three-City First Night Pack',
-  description: 'An English PDF field guide for safer nights in Tokyo, Nagoya and Hamamatsu.',
-  amount: 2400,
-  currency: 'usd',
   file: path.resolve(process.cwd(), 'output/pdf/night-compass-three-city-pack.pdf'),
 };
 
@@ -29,12 +26,12 @@ app.get('/api/health', (_req, res) => {
   res.json({
     service: 'Night Compass Japan',
     status: 'ok',
-    payments: stripe && existsSync(product.file) ? 'ready' : 'not-configured',
+    payments: stripe && stripePriceId && existsSync(product.file) ? 'ready' : 'not-configured',
   });
 });
 
 app.post('/api/create-checkout-session', async (req, res) => {
-  if (!stripe || !existsSync(product.file)) {
+  if (!stripe || !stripePriceId || !existsSync(product.file)) {
     return res.status(503).json({
       error: 'Secure checkout is being connected. Please check back shortly.',
     });
@@ -51,14 +48,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
       line_items: [
         {
           quantity: 1,
-          price_data: {
-            currency: product.currency,
-            unit_amount: product.amount,
-            product_data: {
-              name: product.name,
-              description: product.description,
-            },
-          },
+          price: stripePriceId,
         },
       ],
       metadata: { product: product.id },

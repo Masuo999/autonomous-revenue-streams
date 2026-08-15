@@ -1,356 +1,47 @@
 {
   "blog": [
     {
-      "path": "/blog/1786709172188.md",
-      "title": "最新AIトレンドまとめ - 2026-08-14",
-      "image": "/images/blog_1786709172188.jpg"
-    },
-    {
-      "path": "/blog/1786712646599.md",
-      "title": "最新AIトレンドまとめ - 2026-08-14",
-      "image": "/images/blog_1786712646599.jpg"
-    },
-    {
-      "path": "/blog/1786717516756.md",
-      "title": "最新AIトレンドまとめ - 2026-08-14",
-      "image": "/images/blog_1786717516756.jpg"
-    },
-    {
-      "path": "/blog/smart_post_1.md",
-      "title": "次世代AIエージェントの衝撃：私たちの働き方はどう変わるか？",
-      "image": "/images/blog_smart_post_1.jpg"
-    },
-    {
-      "path": "/blog/smart_post_10.md",
-      "title": "クォンタム・インターネットがもたらす「絶対にハッキングされない」通信網",
-      "image": "/images/blog_smart_post_10.jpg"
-    },
-    {
-      "path": "/blog/smart_post_11.md",
-      "title": "デジタルオルファクション（人工嗅覚）が切り拓く新たなUX",
-      "image": "/images/blog_smart_post_11.jpg"
-    },
-    {
-      "path": "/blog/smart_post_12.md",
-      "title": "DAO（自律分散型組織）が変える「会社」という概念",
-      "image": "/images/blog_smart_post_12.jpg"
-    },
-    {
-      "path": "/blog/smart_post_13.md",
-      "title": "脳波インターフェース（BCI）がもたらす「思考による操作」の日常",
-      "image": "/images/blog_smart_post_13.jpg"
-    },
-    {
-      "path": "/blog/smart_post_14.md",
-      "title": "空飛ぶラストワンマイル：自律型ドローン配送の最前線",
-      "image": "/images/blog_smart_post_14.jpg"
-    },
-    {
-      "path": "/blog/smart_post_15.md",
-      "title": "脳波解読モデルの飛躍と「思考のプライバシー」",
-      "image": "/images/blog_smart_post_15.jpg"
-    },
-    {
-      "path": "/blog/smart_post_2.md",
-      "title": "プログラミング不要時代？ノーコードと生成AIが交差する未来",
-      "image": "/images/blog_smart_post_2.jpg"
-    },
-    {
-      "path": "/blog/smart_post_3.md",
-      "title": "AI時代のパーソナライズ学習：教育の未来はどう変わるか",
-      "image": "/images/blog_smart_post_3.jpg"
-    },
-    {
-      "path": "/blog/smart_post_4.md",
-      "title": "脳波×AIインターフェース：究極のハンズフリー操作がもたらす革新",
-      "image": "/images/blog_smart_post_4.jpg"
-    },
-    {
-      "path": "/blog/smart_post_5.md",
-      "title": "空間コンピューティング時代の到来：ディスプレイのない世界へ",
-      "image": "/images/blog_smart_post_5.jpg"
-    },
-    {
-      "path": "/blog/smart_post_6.md",
-      "title": "アンビエント・コンピューティング：意識せずにテクノロジーを使う時代",
-      "image": "/images/blog_smart_post_6.jpg"
-    },
-    {
-      "path": "/blog/smart_post_7.md",
-      "title": "バイオテクノロジーとAIの融合：個別化医療の最前線",
-      "image": "/images/blog_smart_post_7.jpg"
-    },
-    {
-      "path": "/blog/smart_post_8.md",
-      "title": "AIとサステナビリティ：テクノロジーが救う地球の未来",
-      "image": "/images/blog_smart_post_8.jpg"
-    },
-    {
-      "path": "/blog/smart_post_9.md",
-      "title": "データ・ポイズニングからAIを守る：次世代サイバーセキュリティの最前線",
-      "image": "/images/blog_smart_post_9.jpg"
+      "path": "/blog/ai_gaming_trends_2026.md",
+      "title": {
+        "en": "AI in Gaming 2026: The End of the Debate and the Rise of Dynamic NPCs",
+        "ja": "2026年のAIとゲーム：議論の終焉と「ダイナミックNPC」の台頭",
+        "de": "KI im Gaming 2026: Das Ende der Debatte und der Aufstieg dynamischer NPCs"
+      },
+      "image": "/images/blog_ai_gaming_trends_2026.jpg"
     }
   ],
   "newsletters": [
     {
-      "path": "/newsletters/newsletter-1786712681893.md",
-      "title": "週間AI & Tech ニュースレター - 2026-08-14",
-      "image": "/images/newsletters_newsletter-1786712681893.jpg"
-    },
-    {
-      "path": "/newsletters/newsletter-1786717516809.md",
-      "title": "週間AI & Tech ニュースレター - 2026-08-14",
-      "image": "/images/newsletters_newsletter-1786717516809.jpg"
-    },
-    {
-      "path": "/newsletters/smart_newsletter_1.md",
-      "title": "Weekly AI & Tech Digest (Premium)",
-      "image": "/images/newsletters_smart_newsletter_1.jpg"
-    },
-    {
-      "path": "/newsletters/smart_newsletter_10.md",
-      "title": "Weekly AI & Tech Digest (Premium)",
-      "image": "/images/newsletters_smart_newsletter_10.jpg"
-    },
-    {
-      "path": "/newsletters/smart_newsletter_11.md",
-      "title": "Weekly AI & Tech Digest (Premium)",
-      "image": "/images/newsletters_smart_newsletter_11.jpg"
-    },
-    {
-      "path": "/newsletters/smart_newsletter_12.md",
-      "title": "Weekly AI & Tech Digest (Premium)",
-      "image": "/images/newsletters_smart_newsletter_12.jpg"
-    },
-    {
-      "path": "/newsletters/smart_newsletter_13.md",
-      "title": "Weekly AI & Tech Digest (Premium)",
-      "image": "/images/newsletters_smart_newsletter_13.jpg"
-    },
-    {
-      "path": "/newsletters/smart_newsletter_14.md",
-      "title": "Weekly AI & Tech Digest (Premium)",
-      "image": "/images/newsletters_smart_newsletter_14.jpg"
-    },
-    {
-      "path": "/newsletters/smart_newsletter_15.md",
-      "title": "Weekly AI & Tech Digest: AIエージェントの自律稼働と「AGI」への足音",
-      "image": "/images/newsletters_smart_newsletter_15.jpg"
-    },
-    {
-      "path": "/newsletters/smart_newsletter_2.md",
-      "title": "Weekly AI & Tech Digest (Premium)",
-      "image": "/images/newsletters_smart_newsletter_2.jpg"
-    },
-    {
-      "path": "/newsletters/smart_newsletter_3.md",
-      "title": "Weekly AI & Tech Digest (Premium)",
-      "image": "/images/newsletters_smart_newsletter_3.jpg"
-    },
-    {
-      "path": "/newsletters/smart_newsletter_4.md",
-      "title": "Weekly AI & Tech Digest (Premium)",
-      "image": "/images/newsletters_smart_newsletter_4.jpg"
-    },
-    {
-      "path": "/newsletters/smart_newsletter_5.md",
-      "title": "Weekly AI & Tech Digest (Premium)",
-      "image": "/images/newsletters_smart_newsletter_5.jpg"
-    },
-    {
-      "path": "/newsletters/smart_newsletter_6.md",
-      "title": "Weekly AI & Tech Digest (Premium)",
-      "image": "/images/newsletters_smart_newsletter_6.jpg"
-    },
-    {
-      "path": "/newsletters/smart_newsletter_7.md",
-      "title": "Weekly AI & Tech Digest (Premium)",
-      "image": "/images/newsletters_smart_newsletter_7.jpg"
-    },
-    {
-      "path": "/newsletters/smart_newsletter_8.md",
-      "title": "Weekly AI & Tech Digest (Premium)",
-      "image": "/images/newsletters_smart_newsletter_8.jpg"
-    },
-    {
-      "path": "/newsletters/smart_newsletter_9.md",
-      "title": "Weekly AI & Tech Digest (Premium)",
-      "image": "/images/newsletters_smart_newsletter_9.jpg"
+      "path": "/newsletters/tokyo_dating_apps_2026.md",
+      "title": {
+        "en": "Dating in Tokyo 2026: Beyond Tinder and Surviving Kabukicho",
+        "ja": "東京のナイトライフと恋愛事情 2026：マッチングアプリの今と安全な出会い方",
+        "de": "Dating in Tokio 2026: Jenseits von Tinder und das Überleben in Kabukicho"
+      },
+      "image": "/images/newsletters_tokyo_dating_apps_2026.jpg"
     }
   ],
   "products": [
     {
-      "path": "/products/product-1786712854232.md",
-      "title": "プロンプトエンジニアリング・マスターガイド",
-      "image": "/images/products_product-1786712854232.jpg"
-    },
-    {
-      "path": "/products/product-1786717516866.md",
-      "title": "プロンプトエンジニアリング・マスターガイド",
-      "image": "/images/products_product-1786717516866.jpg"
-    },
-    {
-      "path": "/products/smart_product_1.md",
-      "title": "開発者のための「実践的AIエージェント構築ガイド」",
-      "image": "/images/products_smart_product_1.jpg"
-    },
-    {
-      "path": "/products/smart_product_10.md",
-      "title": "営業マンのための「AIロープレ・プロンプト完全攻略パック」",
-      "image": "/images/products_smart_product_10.jpg"
-    },
-    {
-      "path": "/products/smart_product_11.md",
-      "title": "英語学習者のための「自分専用AIネイティブ講師 構築レシピ」",
-      "image": "/images/products_smart_product_11.jpg"
-    },
-    {
-      "path": "/products/smart_product_12.md",
-      "title": "投資家のための「AI活用によるアルゴリズムトレード入門」",
-      "image": "/images/products_smart_product_12.jpg"
-    },
-    {
-      "path": "/products/smart_product_13.md",
-      "title": "クリエイターのための「ミッドジャーニーV8 完全コントロール術」",
-      "image": "/images/products_smart_product_13.jpg"
-    },
-    {
-      "path": "/products/smart_product_14.md",
-      "title": "企業のIT担当者向け「AIを活用したゼロトラスト・セキュリティ構築ガイド」",
-      "image": "/images/products_smart_product_14.jpg"
-    },
-    {
-      "path": "/products/smart_product_15.md",
-      "title": "次世代AIプログラミング：CursorとGitHub Copilot Workspace 徹底攻略",
-      "image": "/images/products_smart_product_15.jpg"
-    },
-    {
-      "path": "/products/smart_product_2.md",
-      "title": "マーケターのための「AI画像生成パーフェクトガイド」",
-      "image": "/images/products_smart_product_2.jpg"
-    },
-    {
-      "path": "/products/smart_product_3.md",
-      "title": "業務効率化のための「Notion × AI 自動化テンプレート集」",
-      "image": "/images/products_smart_product_3.jpg"
-    },
-    {
-      "path": "/products/smart_product_4.md",
-      "title": "クリエイターのための「AI作曲・BGM生成プロンプト集」",
-      "image": "/images/products_smart_product_4.jpg"
-    },
-    {
-      "path": "/products/smart_product_5.md",
-      "title": "「カスタムGPTs」収益化マスタークラス",
-      "image": "/images/products_smart_product_5.jpg"
-    },
-    {
-      "path": "/products/smart_product_6.md",
-      "title": "動画クリエイター向け「AIアバター自動生成ワークフロー構築ガイド」",
-      "image": "/images/products_smart_product_6.jpg"
-    },
-    {
-      "path": "/products/smart_product_7.md",
-      "title": "ビジネスパーソンのための「生成AI 業務ハック大全」",
-      "image": "/images/products_smart_product_7.jpg"
-    },
-    {
-      "path": "/products/smart_product_8.md",
-      "title": "学生・研究者のための「論文読解・執筆AIアシストマニュアル」",
-      "image": "/images/products_smart_product_8.jpg"
-    },
-    {
-      "path": "/products/smart_product_9.md",
-      "title": "個人開発者のための「Cursor × Claude 3 爆速コーディング実践集」",
-      "image": "/images/products_smart_product_9.jpg"
+      "path": "/products/tokyo_nightlife_guide.md",
+      "title": {
+        "en": "The Tokyo Nightlife Insider Guide: How to Connect Safely",
+        "ja": "東京ナイトライフ・インサイダーガイド：安全に繋がるためのディープスポット攻略",
+        "de": "Der Tokio Nightlife Insider Guide: Sicher und tief vernetzen"
+      },
+      "image": "/images/products_tokyo_nightlife_guide.jpg"
     }
   ],
   "pod_products": [
     {
-      "path": "/pod_products/smart_tshirt_1.md",
-      "title": "サイバーパンク・ネオンサムライ Tシャツ",
-      "image": "/images/pod_products_smart_tshirt_1.jpg"
-    },
-    {
-      "path": "/pod_products/smart_tshirt_10.md",
-      "title": "ヴェイパーウェイヴ・ダビデ Tシャツ",
-      "image": "/images/pod_products_smart_tshirt_10.jpg"
-    },
-    {
-      "path": "/pod_products/smart_tshirt_11.md",
-      "title": "サイバー・タロット「THE FOOL (愚者)」 Tシャツ",
-      "image": "/images/pod_products_smart_tshirt_11.jpg"
-    },
-    {
-      "path": "/pod_products/smart_tshirt_12.md",
-      "title": "ジオメトリック・ウルフ Tシャツ",
-      "image": "/images/pod_products_smart_tshirt_12.jpg"
-    },
-    {
-      "path": "/pod_products/smart_tshirt_13.md",
-      "title": "サイバー・バグ Tシャツ",
-      "image": "/images/pod_products_smart_tshirt_13.jpg"
-    },
-    {
-      "path": "/pod_products/smart_tshirt_14.md",
-      "title": "ネオン・サムライ Tシャツ",
-      "image": "/images/pod_products_smart_tshirt_14.jpg"
-    },
-    {
-      "path": "/pod_products/smart_tshirt_15.md",
-      "title": "バイオ・シンセティック パーカー",
-      "image": "/images/pod_products_smart_tshirt_15.jpg"
-    },
-    {
-      "path": "/pod_products/smart_tshirt_2.md",
-      "title": "レトロ・ウェーブ シンセサイザー Tシャツ",
-      "image": "/images/pod_products_smart_tshirt_2.jpg"
-    },
-    {
-      "path": "/pod_products/smart_tshirt_3.md",
-      "title": "アストロ・ボタニカル パーカー",
-      "image": "/images/pod_products_smart_tshirt_3.jpg"
-    },
-    {
-      "path": "/pod_products/smart_tshirt_4.md",
-      "title": "AI生成 グリッチ・タイポグラフィ Tシャツ",
-      "image": "/images/pod_products_smart_tshirt_4.jpg"
-    },
-    {
-      "path": "/pod_products/smart_tshirt_5.md",
-      "title": "ゼン・ミニマリズム (Zen Minimalism) Tシャツ",
-      "image": "/images/pod_products_smart_tshirt_5.jpg"
-    },
-    {
-      "path": "/pod_products/smart_tshirt_6.md",
-      "title": "バイオ・ルミネッセンス深海 Tシャツ",
-      "image": "/images/pod_products_smart_tshirt_6.jpg"
-    },
-    {
-      "path": "/pod_products/smart_tshirt_7.md",
-      "title": "アナログ・ノスタルジア Tシャツ",
-      "image": "/images/pod_products_smart_tshirt_7.jpg"
-    },
-    {
-      "path": "/pod_products/smart_tshirt_8.md",
-      "title": "エコ・フューチャリズム Tシャツ",
-      "image": "/images/pod_products_smart_tshirt_8.jpg"
-    },
-    {
-      "path": "/pod_products/smart_tshirt_9.md",
-      "title": "コズミック・キャット Tシャツ",
-      "image": "/images/pod_products_smart_tshirt_9.jpg"
-    },
-    {
-      "path": "/pod_products/tshirt-1786712968910.md",
-      "title": "AI Robot グラフィックTシャツ",
-      "image": "/images/pod_products_tshirt-1786712968910.jpg"
-    },
-    {
-      "path": "/pod_products/tshirt-1786717516919.md",
-      "title": "Vintage Synth グラフィックTシャツ",
-      "image": "/images/pod_products_tshirt-1786717516919.jpg"
+      "path": "/pod_products/cyber_shinjuku_tshirt.md",
+      "title": {
+        "en": "Kabukicho Midnight",
+        "ja": "歌舞伎町ミッドナイト「終電」フーディー",
+        "de": "Kabukicho Midnight"
+      },
+      "image": "/images/pod_products_cyber_shinjuku_tshirt.jpg"
     }
   ],
-  "updatedAt": "2026-08-15T04:20:11.995Z"
+  "updatedAt": "2026-08-15T05:04:40.187Z"
 }

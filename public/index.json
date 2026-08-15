@@ -8,9 +8,27 @@
         "de": "KI im Gaming 2026: Das Ende der Debatte und der Aufstieg dynamischer NPCs"
       },
       "image": "/images/blog_ai_gaming_trends_2026.jpg"
+    },
+    {
+      "path": "/blog/ai_gaming_code_revolution_2026.md",
+      "title": {
+        "en": "The AI Code Revolution in Gaming 2026: From Copilot to Autonomous Agent Teams",
+        "ja": "2026年、ゲーム開発におけるAIコード革命：Copilotから自律型エージェントチームへ",
+        "de": "Die KI-Code-Revolution im Gaming 2026: Von Copilot zu autonomen Agententeams"
+      },
+      "image": "/images/blog_ai_gaming_code_revolution_2026.jpg"
     }
   ],
   "newsletters": [
+    {
+      "path": "/newsletters/tokyo_dating_scams_and_trends_2026.md",
+      "title": {
+        "en": "Dating in Tokyo 2026: Escaping the App Fatigue and Surviving the Nightlife Scams",
+        "ja": "東京・出会いのリアル 2026：アプリ疲れの反動と、夜の街にはびこる最新ボッタクリの手口",
+        "de": "Dating in Tokio 2026: Flucht vor der App-Müdigkeit und Überleben der Nachtleben-Betrügereien"
+      },
+      "image": "/images/newsletters_tokyo_dating_scams_and_trends_2026.jpg"
+    },
     {
       "path": "/newsletters/tokyo_dating_apps_2026.md",
       "title": {
@@ -22,6 +40,15 @@
     }
   ],
   "products": [
+    {
+      "path": "/products/tokyo_survival_guide_premium.md",
+      "title": {
+        "en": "Tokyo Nightlife Survival & Connection Guide: Premium Edition",
+        "ja": "東京ナイトライフ・サバイバル＆コネクションガイド（プレミアム版）",
+        "de": "Tokio Nightlife Survival & Connection Guide: Premium Edition"
+      },
+      "image": "/images/products_tokyo_survival_guide_premium.jpg"
+    },
     {
       "path": "/products/tokyo_nightlife_guide.md",
       "title": {
@@ -41,7 +68,16 @@
         "de": "Kabukicho Midnight"
       },
       "image": "/images/pod_products_cyber_shinjuku_tshirt.jpg"
+    },
+    {
+      "path": "/pod_products/cyber_akiba_ghost_tee.md",
+      "title": {
+        "en": "Cyber-Akiba",
+        "ja": "サイバー秋葉原「Ghost in the Code」プレミアムTシャツ",
+        "de": "Cyber-Akiba"
+      },
+      "image": "/images/pod_products_cyber_akiba_ghost_tee.jpg"
     }
   ],
-  "updatedAt": "2026-08-15T05:04:40.187Z"
+  "updatedAt": "2026-08-15T07:38:29.485Z"
 }

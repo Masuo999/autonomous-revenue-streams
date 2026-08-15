@@ -7,13 +7,15 @@ const SITE_ORIGIN = 'https://autonomous-revenue-streams.vercel.app';
 const ui = {
   en: {
     safety: 'Safety', culture: 'Etiquette', guides: 'Field guides',
-    heroKicker: 'Independent night desk / Tokyo',
-    heroTitle: 'Own the night.', heroAccent: 'Skip the mistakes.',
-    heroSub: 'A sharper guide to Japan after dark—where to slow down, what to check, and how to enjoy the city without walking into the obvious traps.',
-    heroCta: 'Read the Shinjuku safety brief',
-    fieldNote: 'TOKYO / NIGHT EDITION / 2026',
-    deskTitle: 'The night desk',
-    deskIntro: 'Three useful reads before your first serious night out.',
+    tokyo: 'Tokyo', nagoya: 'Nagoya', hamamatsu: 'Hamamatsu', allCities: 'All three cities',
+    heroKicker: 'Independent night desk / Tokyo · Nagoya · Hamamatsu',
+    heroTitle: 'Three cities.', heroAccent: 'One smarter night.',
+    heroSub: 'Source-checked intelligence for three very different nights: Tokyo at full volume, Nagoya without the tourist crush, and Hamamatsu at street level.',
+    heroCta: 'Choose your city desk',
+    fieldNote: 'TOKYO / NAGOYA / HAMAMATSU / 2026',
+    deskTitle: 'Three city desks',
+    deskIntro: 'Pick the city you are actually going out in. We keep every recommendation local, practical and independently sourced.',
+    tokyoNote: 'Shinjuku · fast · high-alert', nagoyaNote: 'Sakae · food-first · confident', hamamatsuNote: 'Yurakugai · music · local pace',
     readStory: 'Read story',
     verified: 'Checked', sources: 'official sources',
     ruleTitle: 'Three rules. Every night.',
@@ -29,13 +31,15 @@ const ui = {
   },
   ja: {
     safety: '安全情報', culture: 'マナー', guides: '実用ガイド',
-    heroKicker: '独立ナイトデスク / 東京',
-    heroTitle: '夜を楽しむ。', heroAccent: '失敗は避ける。',
-    heroSub: '日本の夜を一歩深く楽しむために、立ち止まるべき場面、確認する料金、安全に遊ぶ判断基準を実用的に伝えます。',
-    heroCta: '新宿安全ブリーフを読む',
-    fieldNote: 'TOKYO / NIGHT EDITION / 2026',
-    deskTitle: 'ナイトデスク',
-    deskIntro: '本格的に夜へ出かける前に読んでおきたい3本。',
+    tokyo: '東京', nagoya: '名古屋', hamamatsu: '浜松', allCities: '3都市すべて',
+    heroKicker: '独立ナイトデスク / 東京・名古屋・浜松',
+    heroTitle: '三都市。', heroAccent: '夜はそれぞれ違う。',
+    heroSub: '圧倒的な東京、観光客の波から一歩離れた名古屋、地元の距離感で楽しむ浜松。3都市の夜を、公的情報と現地の文脈から実用的に解説します。',
+    heroCta: '都市別デスクを選ぶ',
+    fieldNote: 'TOKYO / NAGOYA / HAMAMATSU / 2026',
+    deskTitle: '3都市のナイトデスク',
+    deskIntro: '今夜出かける都市を選んでください。情報は都市ごとに分け、公的出典を確認して掲載します。',
+    tokyoNote: '新宿・速い・警戒を保つ', nagoyaNote: '栄・食から入る・落ち着く', hamamatsuNote: '有楽街・音楽・地元のペース',
     readStory: '記事を読む',
     verified: '確認日', sources: '件の公的出典',
     ruleTitle: '毎晩守る、3つのルール。',
@@ -51,13 +55,15 @@ const ui = {
   },
   de: {
     safety: 'Sicherheit', culture: 'Etikette', guides: 'Praxis-Guides',
-    heroKicker: 'Unabhängiger Night Desk / Tokio',
-    heroTitle: 'Die Nacht gehört dir.', heroAccent: 'Nicht die Fehler.',
-    heroSub: 'Der schärfere Guide für Japan nach Einbruch der Dunkelheit: was du prüfst, wann du innehältst und wie du die Stadt ohne offensichtliche Fallen genießt.',
-    heroCta: 'Shinjuku-Sicherheitsbrief lesen',
-    fieldNote: 'TOKYO / NIGHT EDITION / 2026',
-    deskTitle: 'The Night Desk',
-    deskIntro: 'Drei Texte vor deiner ersten langen Nacht.',
+    tokyo: 'Tokio', nagoya: 'Nagoya', hamamatsu: 'Hamamatsu', allCities: 'Alle drei Städte',
+    heroKicker: 'Unabhängiger Night Desk / Tokio · Nagoya · Hamamatsu',
+    heroTitle: 'Drei Städte.', heroAccent: 'Drei Arten von Nacht.',
+    heroSub: 'Geprüfte Informationen für drei unterschiedliche Abende: Tokio mit voller Energie, Nagoya ohne den Touristenandrang und Hamamatsu im lokalen Rhythmus.',
+    heroCta: 'Stadt-Desk wählen',
+    fieldNote: 'TOKYO / NAGOYA / HAMAMATSU / 2026',
+    deskTitle: 'Drei City Desks',
+    deskIntro: 'Wähle die Stadt, in der du wirklich ausgehst. Alle Hinweise bleiben lokal, praktisch und unabhängig belegt.',
+    tokyoNote: 'Shinjuku · schnell · aufmerksam', nagoyaNote: 'Sakae · Essen zuerst · souverän', hamamatsuNote: 'Yurakugai · Musik · lokaler Takt',
     readStory: 'Artikel lesen',
     verified: 'Geprüft', sources: 'offizielle Quellen',
     ruleTitle: 'Drei Regeln. Jede Nacht.',
@@ -72,6 +78,12 @@ const ui = {
     loading: 'Night Desk wird geöffnet…',
   },
 };
+
+const cityDesks = [
+  { key: 'tokyo', image: '/images/tokyo-night-editorial.jpg' },
+  { key: 'nagoya', image: '/images/nagoya-night-editorial.jpg' },
+  { key: 'hamamatsu', image: '/images/hamamatsu-night-editorial.jpg' },
+];
 
 const sectionKey = (section) => (
   section === 'blog' ? 'safety' : section === 'newsletters' ? 'culture' : 'guides'
@@ -90,6 +102,7 @@ function languageSegment(markdown, lang) {
 function App() {
   const [lang, setLang] = useState('en');
   const [index, setIndex] = useState(null);
+  const [activeCity, setActiveCity] = useState('all');
   const [selectedContent, setSelectedContent] = useState(null);
   const [markdown, setMarkdown] = useState('');
 
@@ -127,7 +140,7 @@ function App() {
     const metaDescription = document.querySelector('meta[name="description"]');
     const canonical = document.querySelector('link[rel="canonical"]');
     if (!selectedContent) {
-      document.title = `Night Compass Japan — ${ui[lang].heroAccent}`;
+      document.title = 'Night Compass Japan — Tokyo, Nagoya & Hamamatsu';
       if (metaDescription) metaDescription.content = ui[lang].heroSub;
       if (canonical) canonical.href = `${SITE_ORIGIN}/`;
       return;
@@ -160,7 +173,8 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const goToDesk = () => {
+  const goToDesk = (city = 'all') => {
+    setActiveCity(city);
     if (selectedContent) {
       goHome();
       window.setTimeout(() => document.querySelector('#night-desk')?.scrollIntoView(), 50);
@@ -173,8 +187,12 @@ function App() {
     return <div className="loading-screen"><span>NCJ</span><p>{ui[lang].loading}</p></div>;
   }
 
-  const stories = [index.safety[0], index.culture[0], index.guides[0]].filter(Boolean);
-  const leadStory = stories[0];
+  const leadStories = cityDesks
+    .map(({ key }) => allItems.find((item) => item.city === key))
+    .filter(Boolean);
+  const stories = activeCity === 'all'
+    ? leadStories
+    : allItems.filter((item) => item.city === activeCity);
 
   return (
     <div className="app-container">
@@ -183,9 +201,9 @@ function App() {
           <span>NIGHT COMPASS</span><b>JAPAN</b>
         </button>
         <div className="desktop-nav">
-          <button type="button" onClick={goToDesk}>{ui[lang].safety}</button>
-          <button type="button" onClick={goToDesk}>{ui[lang].culture}</button>
-          <button type="button" onClick={goToDesk}>{ui[lang].guides}</button>
+          {cityDesks.map(({ key }) => (
+            <button type="button" key={key} onClick={() => goToDesk(key)}>{ui[lang][key]}</button>
+          ))}
         </div>
         <label className="language-control">
           <span className="sr-only">Language</span>
@@ -198,13 +216,15 @@ function App() {
       {!selectedContent ? (
         <main>
           <section className="hero">
-            <img src="/images/tokyo-night-editorial.jpg" alt="A busy Tokyo nightlife street after dark" />
+            <div className="hero-gallery" aria-hidden="true">
+              {cityDesks.map(({ key, image }) => <img key={key} src={image} alt="" />)}
+            </div>
             <div className="hero-shade" />
             <div className="hero-content">
               <p className="kicker">{ui[lang].heroKicker}</p>
               <h1>{ui[lang].heroTitle}<br /><em>{ui[lang].heroAccent}</em></h1>
               <p className="hero-copy">{ui[lang].heroSub}</p>
-              <button type="button" className="hero-cta" onClick={() => openArticle(leadStory)}>
+              <button type="button" className="hero-cta" onClick={() => goToDesk('all')}>
                 {ui[lang].heroCta}<span>→</span>
               </button>
             </div>
@@ -213,9 +233,20 @@ function App() {
 
           <section className="story-section" id="night-desk">
             <header className="story-heading">
-              <p>01 / EDITORIAL</p>
+              <p>01 / CITY DESKS</p>
               <div><h2>{ui[lang].deskTitle}</h2><span>{ui[lang].deskIntro}</span></div>
             </header>
+
+            <div className="city-tabs" role="group" aria-label="City desk">
+              <button className={activeCity === 'all' ? 'is-active' : ''} type="button" onClick={() => setActiveCity('all')}>
+                <span>00</span><strong>{ui[lang].allCities}</strong><small>Tokyo · Nagoya · Hamamatsu</small>
+              </button>
+              {cityDesks.map(({ key }, cityIndex) => (
+                <button className={activeCity === key ? 'is-active' : ''} type="button" key={key} onClick={() => setActiveCity(key)}>
+                  <span>0{cityIndex + 1}</span><strong>{ui[lang][key]}</strong><small>{ui[lang][`${key}Note`]}</small>
+                </button>
+              ))}
+            </div>
 
             <div className="story-layout">
               {stories.map((item, storyIndex) => (
@@ -224,7 +255,7 @@ function App() {
                     <div className="story-photo"><img src={item.image} alt="" /></div>
                     <div className="story-copy">
                       <div className="story-meta">
-                        <span>{String(storyIndex + 1).padStart(2, '0')} / {ui[lang][sectionKey(item.section)]}</span>
+                        <span>{ui[lang][item.city] || item.city} / {ui[lang][sectionKey(item.section)]}</span>
                         <span>{item.readingTime[lang] || item.readingTime.en}</span>
                       </div>
                       <h3>{item.title[lang] || item.title.en}</h3>
@@ -258,7 +289,7 @@ function App() {
             <img src={selectedContent.image} alt="" />
             <div className="reader-shade" />
             <div className="reader-heading">
-              <p>{ui[lang][sectionKey(selectedContent.section)]}</p>
+              <p>{ui[lang][selectedContent.city] || selectedContent.city} / {ui[lang][sectionKey(selectedContent.section)]}</p>
               <h1>{selectedContent.title[lang] || selectedContent.title.en}</h1>
               <div><span>{ui[lang].verified}: {selectedContent.verifiedAt}</span><span>{selectedContent.sourceCount} {ui[lang].sources}</span><span>{selectedContent.readingTime[lang] || selectedContent.readingTime.en}</span></div>
             </div>
@@ -269,7 +300,7 @@ function App() {
 
       <footer>
         <div><b>NIGHT COMPASS JAPAN</b><p>{ui[lang].footer}</p></div>
-        <a href="https://www.pexels.com/" target="_blank" rel="noreferrer">{ui[lang].photoCredit}</a>
+        <div className="photo-links"><span>{ui[lang].photoCredit}</span><a href="https://unsplash.com/photos/restaurant-entrance-at-night-with-illuminated-signage-s3GbfeLYXo4" target="_blank" rel="noreferrer">Nagoya / Sacha Canivet</a><a href="https://commons.wikimedia.org/wiki/File:Arco_Mall_Yurakugai_in_Hamamatsu_City%EF%BC%882%EF%BC%89.jpg" target="_blank" rel="noreferrer">Hamamatsu / Akahito Yamabe · CC BY-SA 4.0</a></div>
       </footer>
     </div>
   );

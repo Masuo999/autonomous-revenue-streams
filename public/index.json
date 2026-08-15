@@ -4,6 +4,7 @@
       "path": "/blog/shinjuku-night-safety-2026.md",
       "slug": "shinjuku-night-safety-2026",
       "section": "blog",
+      "city": "tokyo",
       "title": {
         "en": "Shinjuku After Dark: The Four Checks to Make Before You Enter",
         "ja": "夜の新宿：入店前に確認したい4つの安全チェック",
@@ -27,6 +28,64 @@
       "verifiedAt": "2026-08-15",
       "sourceCount": 3,
       "image": "/images/tokyo-night-editorial.jpg"
+    },
+    {
+      "path": "/blog/nagoya-sakae-after-dark.md",
+      "slug": "nagoya-sakae-after-dark",
+      "section": "blog",
+      "city": "nagoya",
+      "title": {
+        "en": "Nagoya After Dark: Start With Food, Then Read the Room",
+        "ja": "名古屋の夜：食から始めて、栄・伏見を自分のペースで歩く",
+        "de": "Nagoya bei Nacht: Erst essen, dann die Stimmung lesen"
+      },
+      "excerpt": {
+        "en": "A grounded first-night plan for Sakae, Fushimi and Nagoya Station—built around local food, clear prices and a route home you control.",
+        "ja": "栄・伏見・名古屋駅で、名古屋めし、明確な料金、自分で決める帰宅ルートを軸に夜を楽しむ実用プラン。",
+        "de": "Ein bodenständiger Plan für Sakae, Fushimi und den Bahnhof Nagoya: lokales Essen, klare Preise und ein selbst bestimmter Heimweg."
+      },
+      "eyebrow": {
+        "en": "Nagoya night desk",
+        "ja": "名古屋・ナイトデスク",
+        "de": "Nagoya Night Desk"
+      },
+      "readingTime": {
+        "en": "5 min read",
+        "ja": "読了5分",
+        "de": "5 Min."
+      },
+      "verifiedAt": "2026-08-15",
+      "sourceCount": 3,
+      "image": "/images/nagoya-night-editorial.jpg"
+    },
+    {
+      "path": "/blog/hamamatsu-music-city-after-dark.md",
+      "slug": "hamamatsu-music-city-after-dark",
+      "section": "blog",
+      "city": "hamamatsu",
+      "title": {
+        "en": "Hamamatsu After Dark: Music, Yurakugai and the Last Ride Home",
+        "ja": "浜松の夜：音楽の街、有楽街、帰りの交通を楽しむ",
+        "de": "Hamamatsu bei Nacht: Musik, Yurakugai und die letzte Heimfahrt"
+      },
+      "excerpt": {
+        "en": "A compact guide to Hamamatsu",
+        "ja": "音楽の街という背景、地元でのマナー、もう一杯の前に確認したい交通をまとめた浜松中心街の夜ガイド。",
+        "de": "Ein kompakter Guide für Hamamatsus Zentrum: Musikstadt, lokale Etikette und der Verkehrscheck vor der nächsten Runde."
+      },
+      "eyebrow": {
+        "en": "Hamamatsu night desk",
+        "ja": "浜松・ナイトデスク",
+        "de": "Hamamatsu Night Desk"
+      },
+      "readingTime": {
+        "en": "5 min read",
+        "ja": "読了5分",
+        "de": "5 Min."
+      },
+      "verifiedAt": "2026-08-15",
+      "sourceCount": 4,
+      "image": "/images/hamamatsu-night-editorial.jpg"
     }
   ],
   "culture": [
@@ -34,6 +93,7 @@
       "path": "/newsletters/izakaya-etiquette-without-anxiety.md",
       "slug": "izakaya-etiquette-without-anxiety",
       "section": "newsletters",
+      "city": "tokyo",
       "title": {
         "en": "Izakaya Without Anxiety: What the Bill and Table Customs Mean",
         "ja": "初めての居酒屋：お通し・会計・テーブルマナーの基本",
@@ -64,6 +124,7 @@
       "path": "/products/tokyo-first-night-safety-card.md",
       "slug": "tokyo-first-night-safety-card",
       "section": "products",
+      "city": "tokyo",
       "title": {
         "en": "Tokyo First-Night Safety Card: Save These Numbers Before You Go Out",
         "ja": "東京・初日の夜の安全カード：外出前に保存する連絡先",
@@ -89,5 +150,5 @@
       "image": "/images/izakaya-interior-editorial.jpg"
     }
   ],
-  "updatedAt": "2026-08-15T12:43:48.337Z"
+  "updatedAt": "2026-08-15T13:27:40.613Z"
 }

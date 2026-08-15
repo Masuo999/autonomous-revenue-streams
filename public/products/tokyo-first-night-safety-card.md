@@ -2,6 +2,7 @@
 status: published
 verified: true
 slug: tokyo-first-night-safety-card
+city: tokyo
 title_en: "Tokyo First-Night Safety Card: Save These Numbers Before You Go Out"
 title_ja: "東京・初日の夜の安全カード：外出前に保存する連絡先"
 title_de: "Tokyo-Sicherheitskarte für die erste Nacht: Diese Nummern speichern"

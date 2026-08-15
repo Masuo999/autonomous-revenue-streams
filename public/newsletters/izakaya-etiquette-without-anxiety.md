@@ -2,6 +2,7 @@
 status: published
 verified: true
 slug: izakaya-etiquette-without-anxiety
+city: tokyo
 title_en: "Izakaya Without Anxiety: What the Bill and Table Customs Mean"
 title_ja: "初めての居酒屋：お通し・会計・テーブルマナーの基本"
 title_de: "Entspannt ins Izakaya: Rechnung und Tischkultur verstehen"

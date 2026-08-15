@@ -43,6 +43,7 @@ function getFiles(dir) {
       path: `/${dir}/${file}`,
       slug,
       section: dir,
+      city: extractFrontmatter(content, 'city') || 'tokyo',
       title: localize(content, 'title', fallbackTitle),
       excerpt: localize(content, 'excerpt'),
       eyebrow: localize(content, 'eyebrow'),

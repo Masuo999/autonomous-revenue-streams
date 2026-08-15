@@ -2,6 +2,7 @@
 status: published
 verified: true
 slug: shinjuku-night-safety-2026
+city: tokyo
 title_en: "Shinjuku After Dark: The Four Checks to Make Before You Enter"
 title_ja: "夜の新宿：入店前に確認したい4つの安全チェック"
 title_de: "Shinjuku bei Nacht: Vier Checks vor dem Betreten einer Bar"
